@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_home">Home</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_search">Search</string>
+    <string name="title_pcbuilder">PC Builder</string>
+    <string name="title_buyback">Buyback</string>
+</resources>
