@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Debug;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +30,7 @@ public class CartFragment extends Fragment{
 
         //item count
         String itemCount = itemList.size() + " items";
-        TextView itemCountView = view.findViewById(R.id.itemCountView);
+        TextView itemCountView = view.findViewById(R.id.subHeader);
         itemCountView.setText(itemCount);
 
         //recycle view
