@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">PC Hub</string>
     <string name="title_home">Home</string>
     <string name="title_cart">Cart</string>
     <string name="title_search">Search</string>
