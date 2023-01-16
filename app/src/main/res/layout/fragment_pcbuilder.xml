@@ -30,7 +30,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="2"
                 android:paddingStart="20dp"
-                android:text="PC Customise"
+                android:text="PC Builder"
                 android:textAlignment="gravity"
                 android:textColor="#000000"
                 android:textSize="30dp"
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="20dp"
-                android:text="Build a computer of your dream, need or finance!"
+                android:text="Build and customise your own PC here!"
                 android:textColor="#66000000"
                 android:textStyle="bold" />
 
