@@ -39,7 +39,7 @@
                     android:text="My Cart"
                     android:textAlignment="gravity"
                     android:textColor="#CC000000"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </LinearLayout>

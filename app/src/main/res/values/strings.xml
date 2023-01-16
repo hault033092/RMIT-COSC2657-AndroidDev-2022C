@@ -5,5 +5,7 @@
     <string name="title_search">Search</string>
     <string name="title_pcbuilder">PC Builder</string>
     <string name="title_buyback">Buyback</string>
+    <string name="inventory">Inventory</string>
+    <string name="sub_header">Search for your desired PC components here!</string>
 
 </resources>
