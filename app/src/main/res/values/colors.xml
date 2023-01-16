@@ -12,4 +12,9 @@
     <color name="l_Blue">#4436AFF5</color>
     <color name="l_DarkBlue">#553E5890</color>
     <color name="l_Purple">#664C3871</color>
+
+    <color name="d_Green">#9900A857</color>
+    <color name="d_Blue">#AA2B8BC3</color>
+    <color name="d_DarkBlue">#BB2C3E64</color>
+    <color name="d_Purple">#CC2F2345</color>
 </resources>

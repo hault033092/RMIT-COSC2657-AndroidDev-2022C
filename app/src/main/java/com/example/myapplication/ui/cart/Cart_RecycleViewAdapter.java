@@ -1,9 +1,9 @@
 package com.example.myapplication.ui.cart;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.ColorStateList;
+import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Debug;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Entity.Item_Cart;
 import com.example.myapplication.R;
+import com.example.myapplication.ItemDetailActivity;
 
 import java.util.ArrayList;
 
@@ -38,14 +40,21 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Cart_RecycleViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Cart_RecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.nameText.setText(items.get(position).getName());
         holder.priceText.setText(items.get(position).getPriceString());
         holder.amountText.setText(String.valueOf(items.get(position).getAmount()));
         holder.imageView.setImageResource(items.get(position).getImage());
 
         //set click button
-
+        holder.card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, ItemDetailActivity.class);
+                i.putExtra("item",items.get(position));
+                context.startActivity(i);
+            }
+        });
         //update color to icon color to blue on even position
         int mod = position % 4;
         Resources res = context.getResources();
@@ -74,6 +83,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
+        CardView card;
         ImageView imageView;
         ImageView backView;
         TextView nameText;
@@ -85,6 +95,8 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
         public MyViewHolder(@NonNull View itemView)
         {
             super(itemView);
+            card = itemView.findViewById(R.id.Card);
+
             imageView = itemView.findViewById(R.id.item_image);
             backView = itemView.findViewById(R.id.item_background);
             nameText = itemView.findViewById(R.id.name_text);

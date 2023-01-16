@@ -1,7 +1,10 @@
 package com.example.myapplication.Entity;
 
-public class Item_Cart {
+import java.io.Serializable;
+
+public class Item_Cart implements Serializable {
     String name;
+
     int image;
     float price;
     int amount;
