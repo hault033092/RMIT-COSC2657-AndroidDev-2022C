@@ -15,7 +15,6 @@
         android:textAlignment="gravity"
         tools:context=".ui.cart.CartFragment">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,7 +39,7 @@
                     android:text="My Cart"
                     android:textAlignment="gravity"
                     android:textColor="#CC000000"
-                    android:textSize="30dp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </LinearLayout>

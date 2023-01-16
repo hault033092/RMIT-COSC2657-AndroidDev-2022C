@@ -1,7 +1,6 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +54,12 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
 
         ImageView itemImage = view1.findViewById(R.id.itemImage);
         TextView itemName = view1.findViewById(R.id.itemName);
+        TextView itemSpecification = view1.findViewById(R.id.itemSpec);
         TextView itemPrice = view1.findViewById(R.id.itemPrice);
 
         itemImage.setImageResource(searchItem.getImage());
         itemName.setText(searchItem.getName());
+        itemSpecification.setText(searchItem.getSpecification());
         itemPrice.setText(searchItem.getPriceAsString());
 
         return view1;
@@ -79,14 +80,14 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
                     List<SearchItem> searchResults = new ArrayList<>();
 
                     for (SearchItem searchItem : filteredItemsList) {
-                        if (searchItem.getName().toLowerCase().contains(searchString)) {
+                        if (searchItem.getName().toLowerCase().contains(searchString)
+                        || searchItem.getSpecification().toLowerCase().contains(searchString)) {
                             searchResults.add(searchItem);
                         }
                     }
 
                     filteredResults.count = searchResults.size();
                     filteredResults.values = searchResults;
-                    Log.e("search results: ", filteredResults.values.toString());
                 }
                 return filteredResults;
             }

@@ -15,16 +15,19 @@ public class ItemsDatabase {
                 R.drawable.razor, R.drawable.razor, R.drawable.razor, R.drawable.razor, R.drawable.razor, R.drawable.razor
         };
 
-        String[] names = {"4GB Physical RAM", "8GB Physical RAM", "16GB Physical RAM", "32GB Physical RAM", "64GB Physical RAM", "128GB Physical RAM",
-                "Razor Viper V2", "Razor Basilisk V2", "Razor Deathadder V2", "Razor Naga V2", "Razor Orochi V2", "Razor Pro Click V2"
+        String[] names = {"Physical RAM", "Physical RAM", "Physical RAM", "Physical RAM", "Physical RAM", "Physical RAM",
+                "Razor Viper", "Razor Basilisk", "Razor Deathadder", "Razor Naga", "Razor Orochi", "Razor Pro Click"
         };
+
+        String[] specifications = {"(4GB)", "(8GB)", "(16GB)", "(32GB)", "(64GB)", "(128GB)",
+                "(V2)", "(V2)", "(V2)", "(V2)", "(V2)", "(V2)"};
 
         float[] prices = {49.99f, 59.99f, 69.99f, 79.99f, 89.99f, 99.99f,
                 109.99f, 119.99f, 129.99f, 139.99f, 149.99f, 159.99f
         };
 
         for (int i = 0; i < names.length; i++) {
-            SearchItem item = new SearchItem(images[i], names[i], prices[i]);
+            SearchItem item = new SearchItem(images[i], names[i], specifications[i], prices[i]);
             itemsList.add(item);
         }
 
