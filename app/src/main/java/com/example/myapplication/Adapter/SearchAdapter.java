@@ -1,6 +1,7 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,19 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.Entity.SearchItem;
+import com.example.myapplication.Entity.Item;
+import com.example.myapplication.ItemDetailActivity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAdapter extends BaseAdapter implements Filterable {
-    private List<SearchItem> itemsList;
-    private final List<SearchItem> filteredItemsList;
+    private List<Item> itemsList;
+    private final List<Item> filteredItemsList;
     private final Context context;
 
-    public SearchAdapter(List<SearchItem> itemsList, Context context) {
+    public SearchAdapter(List<Item> itemsList, Context context) {
         this.itemsList = itemsList;
         this.filteredItemsList = itemsList;
         this.context = context;
@@ -46,9 +48,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View view1 = view;
 
-        SearchItem searchItem = itemsList.get(i);
-
-        if  (view1 == null) {
+        if (view1 == null) {
             view1 = LayoutInflater.from(context).inflate(R.layout.search_item, viewGroup, false);
         }
 
@@ -57,10 +57,23 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         TextView itemSpecification = view1.findViewById(R.id.itemSpec);
         TextView itemPrice = view1.findViewById(R.id.itemPrice);
 
+        Item searchItem = itemsList.get(i);
+
         itemImage.setImageResource(searchItem.getImage());
         itemName.setText(searchItem.getName());
         itemSpecification.setText(searchItem.getSpecification());
         itemPrice.setText(searchItem.getPriceAsString());
+
+
+        view1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ItemDetailActivity.class);
+                intent.putExtra("item", searchItem);
+                view.setBackgroundResource(R.drawable.rounded_rectangle_bordered);
+                context.startActivity(intent);
+            }
+        });
 
         return view1;
     }
@@ -77,9 +90,9 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
                     filteredResults.values = filteredItemsList;
                 } else {
                     String searchString = charSequence.toString().toLowerCase();
-                    List<SearchItem> searchResults = new ArrayList<>();
+                    List<Item> searchResults = new ArrayList<>();
 
-                    for (SearchItem searchItem : filteredItemsList) {
+                    for (Item searchItem : filteredItemsList) {
                         if (searchItem.getName().toLowerCase().contains(searchString)
                         || searchItem.getSpecification().toLowerCase().contains(searchString)) {
                             searchResults.add(searchItem);
@@ -94,7 +107,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                itemsList = (List<SearchItem>) filterResults.values;
+                itemsList = (List<Item>) filterResults.values;
                 notifyDataSetChanged();
             }
         };

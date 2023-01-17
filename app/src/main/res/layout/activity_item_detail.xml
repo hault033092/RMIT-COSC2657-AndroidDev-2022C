@@ -25,7 +25,7 @@
             android:background="@color/d_Green">
 
             <ImageView
-                android:id="@+id/DecorCricle"
+                android:id="@+id/DecorCircle"
                 android:layout_width="500dp"
                 android:layout_height="500dp"
                 android:layout_marginStart="100dp"
@@ -46,7 +46,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
                     android:orientation="horizontal">
 
                     <FrameLayout
@@ -75,13 +74,23 @@
                         android:id="@+id/ItemTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:layout_gravity="center"
                         android:layout_weight="20"
-                        android:text="Ram DDR3 32GB"
+                        android:text="Ram DDR3"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="(32GB)"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center" />
 
                     <Space
                         android:layout_width="48dp"
@@ -90,14 +99,11 @@
 
                 </LinearLayout>
 
-                <FrameLayout
-                    android:id="@+id/ImageHolder"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="330dp"
-                    android:layout_gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/activity_horizontal_margin">
 
                     <LinearLayout
                         android:layout_width="50dp"
@@ -111,9 +117,8 @@
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_gravity="center_horizontal|center_vertical"
-                            android:backgroundTint="@color/white"
+                            android:backgroundTint="@color/l_Green"
                             android:foregroundGravity="center_vertical|center_horizontal"
-                            android:gravity="clip_horizontal|center_vertical"
                             android:includeFontPadding="false"
                             android:insetLeft="6dp"
                             android:insetRight="6dp"
@@ -127,10 +132,11 @@
                             android:stateListAnimator="@null"
                             android:text="-"
                             android:textAlignment="center"
-                            android:textColor="#66CA99"
+                            android:textColor="@color/white"
                             android:textIsSelectable="false"
                             android:textSize="34sp"
                             android:textStyle="bold"
+                            app:cornerRadius="40dp"
                             app:iconPadding="0dp"
                             app:strokeWidth="0dp" />
 
@@ -155,21 +161,14 @@
                             android:layout_gravity="center_horizontal|center_vertical"
                             android:backgroundTint="@color/l_Green"
                             android:foregroundGravity="center_vertical|center_horizontal"
-                            android:gravity="clip_horizontal|center_vertical"
                             android:includeFontPadding="false"
                             android:insetLeft="6dp"
                             android:insetRight="6dp"
                             android:padding="0dp"
-                            android:paddingStart="0dp"
-                            android:paddingLeft="0dp"
-                            android:paddingTop="0dp"
-                            android:paddingEnd="0dp"
-                            android:paddingRight="0dp"
-                            android:paddingBottom="0dp"
                             android:stateListAnimator="@null"
                             android:text="+"
                             android:textAlignment="center"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/white"
                             android:textIsSelectable="false"
                             android:textSize="34sp"
                             android:textStyle="bold"
@@ -179,15 +178,22 @@
                             app:strokeWidth="0dp" />
                     </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/imageView"
+                    <FrameLayout
+                        android:id="@+id/ImageHolder"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="330dp"
                         android:layout_gravity="center_vertical"
-                        android:translationX="30dp"
-                        android:translationZ="2dp"
-                        app:srcCompat="@drawable/asset_microbit" />
-                </FrameLayout>
+                        android:padding="20dp">
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/asset_microbit" />
+                    </FrameLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
         </FrameLayout>
@@ -203,15 +209,6 @@
             android:paddingEnd="20dp"
             android:paddingBottom="20dp"
             android:translationZ="0dp">
-
-            <TextView
-                android:id="@+id/Description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textColor="#B3000000"
-                android:textSize="24sp"
-                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"

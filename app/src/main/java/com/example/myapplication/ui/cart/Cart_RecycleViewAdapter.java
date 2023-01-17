@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Entity.Item_Cart;
+import com.example.myapplication.Entity.Item;
 import com.example.myapplication.R;
 import com.example.myapplication.ItemDetailActivity;
 
@@ -27,9 +27,9 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
 
     CartFragment.ICartCallBack cartChange;
     Context context;
-    ArrayList<Item_Cart> items;
+    ArrayList<Item> items;
 
-    public Cart_RecycleViewAdapter(Context context, ArrayList<Item_Cart> itemList)
+    public Cart_RecycleViewAdapter(Context context, ArrayList<Item> itemList)
     {
         this.context = context;
         items = itemList;
@@ -51,7 +51,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
     public void onBindViewHolder(@NonNull Cart_RecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
 
-        Item_Cart item = items.get(position);
+        Item item = items.get(position);
         holder.nameText.setText(item.getName());
         holder.priceText.setText(fmt.format(item.getPrice()));
         holder.amountText.setText(String.valueOf(item.getAmount()));
@@ -72,7 +72,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
             @Override
             public void onClick(View view) {
 
-                cartChange.onCartDelete(item,position);
+                cartChange.onCartDelete(item, position);
             }
         });
 
@@ -90,7 +90,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
                 }
                 else{
                     //remove item
-                    cartChange.onCartDelete(item,position);
+                    cartChange.onCartDelete(item, position);
                 }
             }
         });

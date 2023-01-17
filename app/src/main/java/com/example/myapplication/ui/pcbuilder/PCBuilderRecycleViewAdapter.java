@@ -15,7 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Entity.ComponentType;
-import com.example.myapplication.Entity.Item_Cart;
+import com.example.myapplication.Entity.Item;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.cart.Cart_RecycleViewAdapter;
 
@@ -44,7 +44,7 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
 
         //assign adapter
         holder.headerText.setText(types[position].getTypeName());
-        holder.subHeaderText.setText(types[position].getTypesub());
+        holder.subHeaderText.setText(types[position].getTypeSub());
         //assign component
 
         //set click button
