@@ -77,7 +77,8 @@ public class CheckOutActivity extends AppCompatActivity {
         addressChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(CheckOutActivity.this,MapsActivity.class);
+                startActivity(intent);
 
             }
         });
