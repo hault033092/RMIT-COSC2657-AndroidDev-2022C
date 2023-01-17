@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.myapplication.Entity.Item_Cart;
+import com.example.myapplication.Entity.Item;
 import com.example.myapplication.R;
 
 import java.util.Objects;
@@ -39,22 +39,21 @@ public class ItemDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if(intent !=null)
         {
-            Item_Cart myItem = (Item_Cart) intent.getSerializableExtra("item");
+            Item myItem = (Item) intent.getSerializableExtra("item");
             if(myItem!=null)
             {
                 //get component
+                ImageView imageView = findViewById(R.id.imageView);
                 TextView nameView = findViewById(R.id.ItemTitle);
                 TextView amountView = findViewById(R.id.Amount);
                 TextView priceView = findViewById(R.id.priceView);
                 TextView desView = findViewById(R.id.desView);
-                ImageView imageView = findViewById(R.id.imageView);
                 //display
                 nameView.setText(myItem.getName());
-                amountView.setText( String.valueOf(myItem.getAmount()));
-                priceView.setText(String.valueOf(myItem.getPrice()));
+                amountView.setText(myItem.getAmountAsString());
+                priceView.setText(myItem.getPriceAsString());
                 imageView.setImageResource(myItem.getImage());
-                //no des yet
-                desView.setText("Please update des in model");
+                desView.setText(myItem.getDescription());
             }
         }
     }

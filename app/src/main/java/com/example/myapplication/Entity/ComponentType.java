@@ -4,23 +4,23 @@ import java.util.ArrayList;
 
 public class ComponentType {
     String typeName;
-    String typesub;
-    ArrayList<Item_Cart> item_carts;
+    String typeSub;
+    ArrayList<Item> item_carts;
 
-    public ComponentType(String typeName, String typesub) {
+    public ComponentType(String typeName, String typeSub) {
         this.typeName = typeName;
-        this.typesub = typesub;
-        item_carts = new ArrayList<Item_Cart>();
+        this.typeSub = typeSub;
+        item_carts = new ArrayList<>();
     }
 
-    public void addComponent(Item_Cart item)
+    public void addComponent(Item item)
     {
         item_carts.add(item);
     }
-    public void removeComponent(Item_Cart item){
+    public void removeComponent(Item item){
         item_carts.remove(item);
     }
-    public ArrayList<Item_Cart> getItems()
+    public ArrayList<Item> getItems()
     {
         return item_carts;
     }
@@ -29,7 +29,7 @@ public class ComponentType {
         return typeName;
     }
 
-    public String getTypesub() {
-        return typesub;
+    public String getTypeSub() {
+        return typeSub;
     }
 }

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.Entity.Item_Cart;
+import com.example.myapplication.Entity.Item;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.cart.Cart_RecycleViewAdapter;
 
@@ -19,9 +19,9 @@ import java.util.ArrayList;
 
 public class PCCardRecycleViewAdapter extends RecyclerView.Adapter<PCCardRecycleViewAdapter.MyViewHolder>{
     Context context;
-    ArrayList<Item_Cart> items;
+    ArrayList<Item> items;
 
-    public PCCardRecycleViewAdapter(Context context, ArrayList<Item_Cart> itemList)
+    public PCCardRecycleViewAdapter(Context context, ArrayList<Item> itemList)
     {
         this.context = context;
         items = itemList;
@@ -37,7 +37,7 @@ public class PCCardRecycleViewAdapter extends RecyclerView.Adapter<PCCardRecycle
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.nameText.setText(items.get(position).getName());
-        holder.priceText.setText(items.get(position).getPriceString());
+        holder.priceText.setText(items.get(position).getPriceAsString());
         holder.amountText.setText(String.valueOf(items.get(position).getAmount()));
         holder.imageView.setImageResource(items.get(position).getImage());
     }

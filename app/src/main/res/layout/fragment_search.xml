@@ -39,10 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:queryHint="Search for components..."
-            android:background="@drawable/rounded_rectangle_bordered"
-            android:defaultFocusHighlightEnabled="false" />
-
-
+            android:background="@drawable/rounded_rectangle_bordered" />
     </LinearLayout>
 
     <GridView

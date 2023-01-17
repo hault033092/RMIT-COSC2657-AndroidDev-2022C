@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.GridView;
 import android.widget.SearchView;
 
 import com.example.myapplication.Adapter.SearchAdapter;
-import com.example.myapplication.Entity.SearchItem;
+import com.example.myapplication.Entity.Item;
 import com.example.myapplication.Model.ItemsDatabase;
 import com.example.myapplication.R;
 
@@ -21,7 +20,7 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
     Context context;
-    List<SearchItem> itemsList = ItemsDatabase.retrieveAllSearchItems();
+    List<Item> itemsList = ItemsDatabase.retrieveAllSearchItems();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +42,6 @@ public class SearchFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                Log.e("TAG", " new text => " + s);
                 searchAdapter.getFilter().filter(s);
                 return true;
             }
