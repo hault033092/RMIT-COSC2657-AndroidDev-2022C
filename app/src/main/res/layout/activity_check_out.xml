@@ -6,10 +6,7 @@
     android:layout_height="match_parent"
     android:background="#00322222"
     android:fillViewport="true"
-    android:overScrollMode="never"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
-    android:scrollbars="none">
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -27,47 +24,41 @@
             android:paddingTop="10dp"
             android:paddingBottom="0dp">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="bottom|center_horizontal"
-                android:orientation="horizontal"
+                android:layout_height="match_parent"
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp">
 
+                <FrameLayout
+                    android:id="@+id/ReturnButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_weight="0">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        app:srcCompat="@drawable/return_arrow" />
+                </FrameLayout>
+
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
-                    android:text="My Cart"
-                    android:textAlignment="gravity"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:text="Check Out"
+                    android:textAlignment="center"
                     android:textColor="#CC000000"
-                    android:textSize="30sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/clear"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Clear All"
-                    android:textAlignment="textEnd"
-                    android:textColor="#3E588F"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/subHeader"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:text="0 items"
-                android:textColor="#66000000"
-                android:textStyle="bold" />
+            </FrameLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -79,10 +70,11 @@
             android:id="@+id/cartView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_weight="0"
             android:overScrollMode="never"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             tools:visibility="visible" />
 
         <FrameLayout

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.Entity.Item_Cart;
@@ -50,7 +51,21 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
+        //Clear All
+        TextView clear = view.findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemList.clear();
+                adapter.notifyDataSetChanged();
+                DisplayEmptyCart(true);
+            }
+        });
 
+        if(itemList.size() == 0)
+        {
+            DisplayEmptyCart(true);
+        }
         //calculation
         float subtotalCost = 0;
         for (int i = 0; i < itemList.size(); i++) {
@@ -100,10 +115,33 @@ public class CartFragment extends Fragment {
                 subtotal.setText( fmt.format(subtotalCost));
                 tax.setText(fmt.format(taxes));
                 total.setText(fmt.format(totalCost));
+                //display empty cart if there are no item
+                if(itemList.size() ==0)
+                {
+                    DisplayEmptyCart(true);
+                }
             }
         });
 
         return view;
+    }
+
+    public void AddItemToCart()
+    {
+        //
+    }
+
+    private void DisplayEmptyCart(boolean state)
+    {
+        FrameLayout layout = getView().findViewById(R.id.no_Item);
+
+        if(state)
+        {
+            layout.setVisibility(View.VISIBLE);
+        }
+        else{
+            layout.setVisibility(View.GONE);
+        }
     }
     private void GenerateTesingData()
     {
