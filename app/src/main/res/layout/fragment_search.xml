@@ -38,9 +38,10 @@
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:queryHint="Type keywords here..."
+            android:queryHint="Search for components..."
             android:background="@drawable/rounded_rectangle_bordered"
             android:defaultFocusHighlightEnabled="false" />
+
 
     </LinearLayout>
 
