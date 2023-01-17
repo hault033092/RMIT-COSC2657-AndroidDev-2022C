@@ -16,6 +16,26 @@ public class Item_Cart implements Serializable {
         this.amount = amount;
     }
 
+    //setter
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+
+    //getter
     public String getName() {
         return name;
     }
@@ -27,6 +47,8 @@ public class Item_Cart implements Serializable {
     public float getPrice() {
         return price;
     }
+    public  float getQuantityPrice()
+    {return price * amount;}
     public String getPriceString()
     {
         return "$" + String.valueOf(price);

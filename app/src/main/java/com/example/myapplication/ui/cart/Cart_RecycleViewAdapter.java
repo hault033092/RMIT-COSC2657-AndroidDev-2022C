@@ -20,16 +20,24 @@ import com.example.myapplication.Entity.Item_Cart;
 import com.example.myapplication.R;
 import com.example.myapplication.ItemDetailActivity;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleViewAdapter.MyViewHolder> {
 
+    CartFragment.ICartCallBack cartChange;
     Context context;
     ArrayList<Item_Cart> items;
+
     public Cart_RecycleViewAdapter(Context context, ArrayList<Item_Cart> itemList)
     {
         this.context = context;
         items = itemList;
+    }
+    //set cart change
+    public void setCartChangeListener(CartFragment.ICartCallBack cc)
+    {
+        cartChange =cc;
     }
     @NonNull
     @Override
@@ -41,18 +49,62 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
 
     @Override
     public void onBindViewHolder(@NonNull Cart_RecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.nameText.setText(items.get(position).getName());
-        holder.priceText.setText(items.get(position).getPriceString());
-        holder.amountText.setText(String.valueOf(items.get(position).getAmount()));
-        holder.imageView.setImageResource(items.get(position).getImage());
+        NumberFormat fmt = NumberFormat.getCurrencyInstance();
+
+        Item_Cart item = items.get(position);
+        holder.nameText.setText(item.getName());
+        holder.priceText.setText(fmt.format(item.getPrice()));
+        holder.amountText.setText(String.valueOf(item.getAmount()));
+        holder.imageView.setImageResource(item.getImage());
 
         //set click button
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context, ItemDetailActivity.class);
-                i.putExtra("item",items.get(position));
+                i.putExtra("item",item);
                 context.startActivity(i);
+            }
+        });
+
+        //set remove button
+        holder.removeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                cartChange.onCartDelete(item,position);
+            }
+        });
+
+        //set subtract button
+        holder.subtractButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(item.getAmount() >1)
+                {
+                    int newAmount = item.getAmount() -1;
+                    item.setAmount(newAmount);
+                    //display new quantity
+                    holder.amountText.setText(String.valueOf(item.getAmount()));
+                    cartChange.onCartChange();
+                }
+                else{
+                    //remove item
+                    cartChange.onCartDelete(item,position);
+                }
+            }
+        });
+        //set add Button
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(item.getAmount() <99)
+                {
+                    int newAmount = item.getAmount() +1;
+                    item.setAmount(newAmount);
+                    holder.amountText.setText(String.valueOf(item.getAmount()));
+                    cartChange.onCartChange();
+                }
             }
         });
         //update color to icon color to blue on even position
