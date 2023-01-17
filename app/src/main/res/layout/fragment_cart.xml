@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00322222"
+    android:background="#F7F7F7"
     android:fillViewport="true"
     android:overScrollMode="never"
     android:paddingStart="10dp"
@@ -72,7 +72,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/l_gray" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -197,7 +197,7 @@
             android:paddingBottom="20dp">
 
             <TextView
-                android:id="@+id/cart_totalCost"
+                android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -209,7 +209,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/checkOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

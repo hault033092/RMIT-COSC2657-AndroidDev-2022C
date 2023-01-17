@@ -1,18 +1,20 @@
 package com.example.myapplication.ui.cart;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.myapplication.CheckOutActivity;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.R;
 
@@ -51,16 +53,6 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-        //Clear All
-        TextView clear = view.findViewById(R.id.clear);
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemList.clear();
-                adapter.notifyDataSetChanged();
-                DisplayEmptyCart(true);
-            }
-        });
 
         if(itemList.size() == 0)
         {
@@ -78,7 +70,7 @@ public class CartFragment extends Fragment {
 
         TextView subtotal = view.findViewById(R.id.cart_subtotalCost);
         TextView tax = view.findViewById(R.id.cart_tax);
-        TextView total = view.findViewById(R.id.cart_totalCost);
+        TextView total = view.findViewById(R.id.total);
         //set starting value
         subtotal.setText(fmt.format(subtotalCost));
         tax.setText( fmt.format(taxes));
@@ -123,6 +115,34 @@ public class CartFragment extends Fragment {
             }
         });
 
+        //Set Clear ALL
+        TextView clear = view.findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemList.clear();
+                adapter.notifyDataSetChanged();
+                DisplayEmptyCart(true);
+
+                subtotal.setText("$0");
+                tax.setText("$0");
+                total.setText("$0");
+            }
+        });
+        //Set CHECKOUT
+        Button checkOut = view.findViewById(R.id.checkOut);
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(itemList.size() == 0) return;//reject if there are nothing in cart
+                Intent intent =new Intent(getActivity(), CheckOutActivity.class);
+                Bundle args = new Bundle();
+                args.putSerializable("items",itemList);
+                intent.putExtra("Bundle",args);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
@@ -143,7 +163,6 @@ public class CartFragment extends Fragment {
             layout.setVisibility(View.GONE);
         }
     }
-    private void GenerateTesingData()
     private void GenerateTestingData()
     {
         Item item = new Item(R.drawable.asset_microbit, "Microbit", "V1", 15.00f,1);
