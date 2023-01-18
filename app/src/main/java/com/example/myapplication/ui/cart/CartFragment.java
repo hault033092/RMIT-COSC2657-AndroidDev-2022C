@@ -36,17 +36,17 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         //generate data
-        GenerateTestingData();
+//        GenerateTestingData();
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         //item count
-        String itemCount = itemList.size() + " items";
-        TextView itemCountView = view.findViewById(R.id.subHeader);
-        itemCountView.setText(itemCount);
+//        String itemCount = itemList.size() + " items";
+//        TextView itemCountView = view.findViewById(R.id.subHeader);
+//        itemCountView.setText(itemCount);
 
         //recycle view
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.cartView);
+        RecyclerView recyclerView = view.findViewById(R.id.cartView);
         Cart_RecycleViewAdapter adapter = new Cart_RecycleViewAdapter(view.getContext(), itemList);
 
         recyclerView.setHasFixedSize(true);
@@ -58,6 +58,7 @@ public class CartFragment extends Fragment {
         {
             DisplayEmptyCart(true);
         }
+
         //calculation
         float subtotalCost = 0;
         for (int i = 0; i < itemList.size(); i++) {
@@ -71,10 +72,12 @@ public class CartFragment extends Fragment {
         TextView subtotal = view.findViewById(R.id.cart_subtotalCost);
         TextView tax = view.findViewById(R.id.cart_tax);
         TextView total = view.findViewById(R.id.total);
+
         //set starting value
         subtotal.setText(fmt.format(subtotalCost));
         tax.setText( fmt.format(taxes));
         total.setText(fmt.format(totalCost));
+
         //set updating value
         adapter.setCartChangeListener(new ICartCallBack() {
             @Override
@@ -117,54 +120,47 @@ public class CartFragment extends Fragment {
 
         //Set Clear ALL
         TextView clear = view.findViewById(R.id.clear);
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemList.clear();
-                adapter.notifyDataSetChanged();
-                DisplayEmptyCart(true);
+        clear.setOnClickListener(view1 -> {
+            itemList.clear();
+            adapter.notifyDataSetChanged();
+            DisplayEmptyCart(true);
 
-                subtotal.setText("$0");
-                tax.setText("$0");
-                total.setText("$0");
-            }
+            subtotal.setText("$0");
+            tax.setText("$0");
+            total.setText("$0");
         });
+
         //Set CHECKOUT
         Button checkOut = view.findViewById(R.id.checkOut);
-        checkOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(itemList.size() == 0) return;//reject if there are nothing in cart
-                Intent intent =new Intent(getActivity(), CheckOutActivity.class);
-                Bundle args = new Bundle();
-                args.putSerializable("items",itemList);
-                intent.putExtra("Bundle",args);
-                startActivity(intent);
-            }
+        checkOut.setOnClickListener(view12 -> {
+            if(itemList.size() == 0) return;//reject if there are nothing in cart
+            Intent intent =new Intent(getActivity(), CheckOutActivity.class);
+            Bundle args = new Bundle();
+            args.putSerializable("items",itemList);
+            intent.putExtra("Bundle",args);
+            startActivity(intent);
         });
 
         return view;
     }
 
-    public void AddItemToCart()
-    {
-        //
-    }
+//    public void AddItemToCart()
+//    {
+//
+//    }
 
-    private void DisplayEmptyCart(boolean state)
-    {
+    private void DisplayEmptyCart(boolean state) {
         FrameLayout layout = getView().findViewById(R.id.no_Item);
 
-        if(state)
-        {
+        if(state) {
             layout.setVisibility(View.VISIBLE);
         }
-        else{
+        else {
             layout.setVisibility(View.GONE);
         }
     }
-    private void GenerateTestingData()
-    {
+
+    private void GenerateTestingData() {
         Item item = new Item(R.drawable.asset_microbit, "Microbit", "V1", 15.00f,1);
         Item item2 = new Item(R.drawable.asset_microbit, "Ram DDR", "4GB",10.00f, 2);
         Item item3 = new Item(R.drawable.asset_microbit, "Monitor RT", "Model 1572", 55.00f, 1);

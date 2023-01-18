@@ -73,25 +73,26 @@
                     </FrameLayout>
 
                     <TextView
-                        android:id="@+id/ItemTitle"
+                        android:id="@+id/itemTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="20"
+                        android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
                         android:text="Ram DDR3"
-                        android:textAlignment="textEnd"
                         android:textColor="@color/white"
                         android:textSize="26dp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/itemSpec"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="(32GB)"
                         android:textAlignment="center"
-                        android:textColor="@color/d_Green"
-                        android:textSize="24sp"
+                        android:textColor="@color/white"
+                        android:textSize="26sp"
                         android:textStyle="bold" />
 
                     <Space
@@ -115,53 +116,11 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/SubtractButton"
+                            android:id="@+id/addButton"
                             android:layout_width="48dp"
                             android:layout_height="48dp"
                             android:layout_gravity="center_horizontal|center_vertical"
-                            android:backgroundTint="#00FFFFFF"
-                            android:foregroundGravity="center_vertical|center_horizontal"
-                            android:includeFontPadding="false"
-                            android:insetLeft="6dp"
-                            android:insetRight="6dp"
-                            android:padding="0dp"
-                            android:paddingStart="0dp"
-                            android:paddingLeft="0dp"
-                            android:paddingTop="0dp"
-                            android:paddingEnd="0dp"
-                            android:paddingRight="0dp"
-                            android:paddingBottom="0dp"
-                            android:stateListAnimator="@null"
-                            android:text="-"
-                            android:textAlignment="center"
-                            android:textColor="@color/d_Green"
-                            android:textIsSelectable="false"
-                            android:textSize="34sp"
-                            android:textStyle="bold"
-                            app:cornerRadius="40dp"
-                            app:iconPadding="0dp"
-                            app:strokeWidth="0dp" />
-
-                        <TextView
-                            android:id="@+id/Amount"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:includeFontPadding="false"
-                            android:text="0"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="24sp"
-                            android:textStyle="bold" />
-
-                        <Button
-                            android:id="@+id/AddButton"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="center_horizontal|center_vertical"
-                            android:backgroundTint="@color/l_Green"
+                            android:backgroundTint="@color/d_Green"
                             android:foregroundGravity="center_vertical|center_horizontal"
                             android:includeFontPadding="false"
                             android:insetLeft="6dp"
@@ -178,10 +137,52 @@
                             app:iconPadding="0dp"
                             app:iconTint="#FFFFFF"
                             app:strokeWidth="0dp" />
+
+                        <TextView
+                            android:id="@+id/itemAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:includeFontPadding="false"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="24sp"
+                            android:textStyle="bold" />
+
+                        <Button
+                            android:id="@+id/subtractButton"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:backgroundTint="@color/d_Green"
+                            android:foregroundGravity="center_vertical|center_horizontal"
+                            android:includeFontPadding="false"
+                            android:insetLeft="6dp"
+                            android:insetRight="6dp"
+                            android:padding="0dp"
+                            android:paddingStart="0dp"
+                            android:paddingLeft="0dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="0dp"
+                            android:paddingRight="0dp"
+                            android:paddingBottom="0dp"
+                            android:stateListAnimator="@null"
+                            android:text="-"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textIsSelectable="false"
+                            android:textSize="34sp"
+                            android:textStyle="bold"
+                            app:cornerRadius="40dp"
+                            app:iconPadding="0dp"
+                            app:strokeWidth="0dp" />
                     </LinearLayout>
 
                     <FrameLayout
-                        android:id="@+id/ImageHolder"
+                        android:id="@+id/imageHolder"
                         android:layout_width="match_parent"
                         android:layout_height="330dp"
                         android:layout_gravity="center_vertical"
@@ -298,7 +299,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/CartButton"
+            android:id="@+id/cartButton"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_gravity="center_horizontal"

@@ -39,6 +39,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
     {
         cartChange =cc;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -58,53 +59,38 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
         holder.imageView.setImageResource(item.getImage());
 
         //set click button
-        holder.card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context, ItemDetailActivity.class);
-                i.putExtra("item",item);
-                context.startActivity(i);
-            }
+        holder.card.setOnClickListener(view -> {
+            Intent i = new Intent(context, ItemDetailActivity.class);
+            i.putExtra("item",item);
+            context.startActivity(i);
         });
 
         //set remove button
-        holder.removeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.removeButton.setOnClickListener(view -> cartChange.onCartDelete(item, position));
 
+        //set subtract button
+        holder.subtractButton.setOnClickListener(view -> {
+            if(item.getAmount() >1)
+            {
+                int newAmount = item.getAmount() -1;
+                item.setAmount(newAmount);
+                //display new quantity
+                holder.amountText.setText(String.valueOf(item.getAmount()));
+                cartChange.onCartChange();
+            }
+            else{
+                //remove item
                 cartChange.onCartDelete(item, position);
             }
         });
-
-        //set subtract button
-        holder.subtractButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(item.getAmount() >1)
-                {
-                    int newAmount = item.getAmount() -1;
-                    item.setAmount(newAmount);
-                    //display new quantity
-                    holder.amountText.setText(String.valueOf(item.getAmount()));
-                    cartChange.onCartChange();
-                }
-                else{
-                    //remove item
-                    cartChange.onCartDelete(item, position);
-                }
-            }
-        });
         //set add Button
-        holder.addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(item.getAmount() <99)
-                {
-                    int newAmount = item.getAmount() +1;
-                    item.setAmount(newAmount);
-                    holder.amountText.setText(String.valueOf(item.getAmount()));
-                    cartChange.onCartChange();
-                }
+        holder.addButton.setOnClickListener(view -> {
+            if(item.getAmount() <99)
+            {
+                int newAmount = item.getAmount() +1;
+                item.setAmount(newAmount);
+                holder.amountText.setText(String.valueOf(item.getAmount()));
+                cartChange.onCartChange();
             }
         });
         //update color to icon color to blue on even position
@@ -144,8 +130,8 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
 
         Button subtractButton, addButton;
         TextView removeButton;
-        public MyViewHolder(@NonNull View itemView)
-        {
+
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             card = itemView.findViewById(R.id.Card);
 

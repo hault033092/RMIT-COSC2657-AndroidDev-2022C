@@ -1,6 +1,8 @@
 package com.example.myapplication.database;
 
-public class PcComponent {
+import java.io.Serializable;
+
+public class PcComponent implements Serializable {
     private long id;
     private String name;
     private String specification;
