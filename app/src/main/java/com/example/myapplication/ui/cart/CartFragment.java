@@ -54,7 +54,6 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-        FrameLayout layout = view.findViewById(R.id.no_Item);
         if(itemList.size() == 0)
         {
             DisplayEmptyCart(true);

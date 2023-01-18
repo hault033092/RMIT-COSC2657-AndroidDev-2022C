@@ -9,7 +9,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.Entity.Item;
@@ -32,7 +31,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         FrameLayout returnButton = findViewById(R.id.ReturnButton);
         Button addButton =findViewById(R.id.addButton);
         Button subtractButton = findViewById(R.id.subtractButton);
-        LinearLayout cartButton = findViewById(R.id.cartButton);
+        Button cartButton = findViewById(R.id.cartButton);
 
         //Update current info with intent
         Intent intent = getIntent();
