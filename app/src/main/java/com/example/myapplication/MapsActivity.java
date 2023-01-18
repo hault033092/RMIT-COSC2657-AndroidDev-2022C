@@ -233,7 +233,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void confirmLocation(String address) {
         Intent returnIntent = new Intent();
-        Log.d("passing address------",address+"---------------------------------");
+        //Log.d("passing address------",address+"---------------------------------");
         returnIntent.putExtra("address",address);
         setResult(Activity.RESULT_OK,returnIntent);
         finish();

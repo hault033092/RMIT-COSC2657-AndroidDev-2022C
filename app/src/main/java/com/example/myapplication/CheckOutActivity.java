@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.Adapter.CheckOutAdapter;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.Entity.Voucher;
 import com.example.myapplication.Interface.IConfirmLocation;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -41,7 +42,12 @@ public class CheckOutActivity extends AppCompatActivity {
 
     private GoogleMap mMap;
 
+    float subtotalCost =0;
+    float taxes = 0 ;
+    float voucher = 0;
+
     private final static int LOCATION_REQUEST_CODE = 23;
+    private  final static int VOUCHER_REQUEST_CODE = 20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -91,15 +97,23 @@ public class CheckOutActivity extends AppCompatActivity {
 
         TextView timeView = findViewById(R.id.timeView);
         timeView.setText(date);
-        //set VOUCHER
 
+        //set VOUCHER
+        TextView voucherChange = findViewById(R.id.voucherChange);
+        voucherChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CheckOutActivity.this,VoucherActivity.class);
+                startActivityForResult(intent,VOUCHER_REQUEST_CODE);
+            }
+        });
         //set COST
-        float subtotalCost = 0;
+        subtotalCost = 0;
         for (int i = 0; i < itemList.size(); i++) {
             subtotalCost += itemList.get(i).getQuantityPrice();
         }
-        float taxes = subtotalCost * 5 / 100;
-        float voucher = 0;
+        taxes = subtotalCost * 5 / 100;
+        voucher = 0;
         float totalCost = subtotalCost + taxes -voucher;
 
         TextView subTotalView = findViewById(R.id.subtotal);
@@ -127,6 +141,27 @@ public class CheckOutActivity extends AppCompatActivity {
                 TextView location = findViewById(R.id.locationView);
                 location.setText(address);
 
+            }
+        }
+        if (requestCode == VOUCHER_REQUEST_CODE) {
+            //check successful
+            if (resultCode == RESULT_OK) {
+
+                Voucher v = (Voucher) data.getSerializableExtra("voucher");
+                //update the voucher name
+                TextView voucherView = findViewById(R.id.voucherView);
+                voucherView.setText(v.getVoucherName());
+                //update changes in price
+                voucher = subtotalCost * v.getFixedDiscount()/100f;
+                String.format("%.2f", voucher);
+
+                TextView promo = findViewById(R.id.promo);
+                NumberFormat fmt = NumberFormat.getCurrencyInstance();
+                promo.setText("-" + fmt.format(voucher));
+
+                float total = subtotalCost+ taxes - voucher;
+                TextView totalView = findViewById(R.id.total);
+                totalView.setText(fmt.format(total));
             }
         }
     }

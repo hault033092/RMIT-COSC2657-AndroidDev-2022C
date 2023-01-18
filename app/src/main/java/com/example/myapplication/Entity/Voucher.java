@@ -7,9 +7,9 @@ public class Voucher implements Serializable {
     String voucherName;
     String voucherDescription;
     int fixedDiscount;
-    Date expiryDate;
+    String expiryDate;
 
-    public Voucher(String voucherName, String voucherDescription, int fixedDiscount, Date expiryDate) {
+    public Voucher(String voucherName, String voucherDescription, int fixedDiscount, String expiryDate) {
         this.voucherName = voucherName;
         this.voucherDescription = voucherDescription;
         this.fixedDiscount = fixedDiscount;
@@ -28,7 +28,7 @@ public class Voucher implements Serializable {
         return fixedDiscount;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 }
