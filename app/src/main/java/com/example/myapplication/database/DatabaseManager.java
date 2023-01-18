@@ -23,36 +23,42 @@ public class DatabaseManager {
     public void close(){
         dbHelper.close();
     }
-    public void insert(String name, double price){
+    public void insert(String name, String specification, String description,  double price){
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DatabaseHelper.NAME, name);
-        contentValue.put(DatabaseHelper.PRICE, price);
-        database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
+        contentValue.put(DatabaseHelper.COMPONENT_NAME, name);
+        contentValue.put(DatabaseHelper.COMPONENT_SPECIFICATION, specification);
+        contentValue.put(DatabaseHelper.COMPONENT_DESCRIPTION, description);
+        contentValue.put(DatabaseHelper.COMPONENT_PRICE, price);
+        database.insert(DatabaseHelper.TABLE_COMPONENT, null, contentValue);
     }
-    public int update(long _id, String name, double price){
+    public int update(long _id, String name, String specification, String description, double price){
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DatabaseHelper.NAME, name);
-        contentValue.put(DatabaseHelper.PRICE, price);
-        int i = database.update(DatabaseHelper.TABLE_NAME,
+        contentValue.put(DatabaseHelper.COMPONENT_NAME, name);
+        contentValue.put(DatabaseHelper.COMPONENT_SPECIFICATION, specification);
+        contentValue.put(DatabaseHelper.COMPONENT_DESCRIPTION, description);
+        contentValue.put(DatabaseHelper.COMPONENT_PRICE, price);
+        int i = database.update(DatabaseHelper.TABLE_COMPONENT,
                 contentValue,
-                DatabaseHelper.ID + " =" + _id, null);
+                DatabaseHelper.COMPONENT_ID + " =" + _id, null);
         return i;
     }
     public void delete(long _id){
-        database.delete(DatabaseHelper.TABLE_NAME,
-                DatabaseHelper.ID + " =" + _id, null);
+        database.delete(DatabaseHelper.TABLE_COMPONENT,
+                DatabaseHelper.COMPONENT_ID + " =" + _id, null);
         // When deleting or adding rows with AUTOINCREMENT, use this to
         // reserve the biggest primary key in the table
         database.delete("SQLITE_SEQUENCE", "NAME = ?", new String[]{
-                DatabaseHelper.TABLE_NAME});
+                DatabaseHelper.TABLE_COMPONENT});
     }
     public Cursor selectAll(){
         String [] columns = new String[] {
-                DatabaseHelper.ID,
-                DatabaseHelper.NAME,
-                DatabaseHelper.PRICE,
+                DatabaseHelper.COMPONENT_ID,
+                DatabaseHelper.COMPONENT_NAME,
+                DatabaseHelper.COMPONENT_SPECIFICATION,
+                DatabaseHelper.COMPONENT_DESCRIPTION,
+                DatabaseHelper.COMPONENT_PRICE,
         };
-        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns,
+        Cursor cursor = database.query(DatabaseHelper.TABLE_COMPONENT, columns,
                 null, null, null, null, null);
         if (cursor != null){
             cursor.moveToFirst();
@@ -61,22 +67,22 @@ public class DatabaseManager {
     }
 
     public PcComponent getOne(long id) {
-        Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, new String[]{DatabaseHelper.ID, DatabaseHelper.NAME, DatabaseHelper.PRICE}, DatabaseHelper.ID + " =?", new String[]{String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = database.query(DatabaseHelper.TABLE_COMPONENT, new String[]{DatabaseHelper.COMPONENT_ID, DatabaseHelper.COMPONENT_NAME, DatabaseHelper.COMPONENT_SPECIFICATION, DatabaseHelper.COMPONENT_DESCRIPTION, DatabaseHelper.COMPONENT_PRICE}, DatabaseHelper.COMPONENT_ID + " =?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), Double.parseDouble(cursor.getString(2)) );
+        PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4)) );
 
         return component;
     }
 
     public ArrayList<PcComponent> getAll() {
         ArrayList<PcComponent> components = new ArrayList<>();
-        String query = "SELECT * from " + DatabaseHelper.TABLE_NAME;
+        String query = "SELECT * from " + DatabaseHelper.TABLE_COMPONENT;
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), Double.parseDouble(cursor.getString(2)) );
+                PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), Double.parseDouble(cursor.getString(4)) );
                 components.add(component);
             } while (cursor.moveToNext());
         }

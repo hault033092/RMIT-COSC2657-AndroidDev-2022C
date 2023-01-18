@@ -2,14 +2,18 @@ package com.example.myapplication.database;
 
 public class PcComponent {
     private long id;
-    private String componentName;
+    private String name;
+    private String specification;
+    private String description;
     private double price;
 
     public PcComponent() {}
 
-    public PcComponent(long id, String componentName, double price) {
+    public PcComponent(long id, String name, String specification, String description, double price) {
         this.id = id;
-        this.componentName = componentName;
+        this.name = name;
+        this.specification = specification;
+        this.description = description;
         this.price = price;
     }
 
@@ -21,7 +25,15 @@ public class PcComponent {
         return price;
     }
 
-    public String getComponentName() {
-        return componentName;
+    public String getDescription() {
+        return description;
+    }
+
+    public String getSpecification() {
+        return specification;
+    }
+    
+    public String getName() {
+        return name;
     }
 }
