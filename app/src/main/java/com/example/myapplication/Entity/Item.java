@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Item implements Serializable {
     int image;
     String name;
+    String type;
     String specification;
     String description;
     float price;
