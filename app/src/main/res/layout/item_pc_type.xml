@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="20dp"
-            android:paddingTop="15dp"
+            android:paddingTop="10dp"
             android:paddingEnd="20dp"
             android:paddingBottom="0dp"
             android:text="CPU"
@@ -37,10 +37,10 @@
             android:id="@+id/item_specialies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:paddingStart="20dp"
             android:text="Central Processing Unit"
-            android:textColor="#99000000" />
+            android:textColor="#66000000" />
 
         <View
             android:layout_width="match_parent"
@@ -56,10 +56,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#1A000000"
+            android:isScrollContainer="false"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
             android:paddingEnd="20dp"
-            android:paddingBottom="10dp" />
+            android:paddingBottom="10dp"
+            android:scrollbars="none" />
 
         <FrameLayout
             android:id="@+id/add_Button"

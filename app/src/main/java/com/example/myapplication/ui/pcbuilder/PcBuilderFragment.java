@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.pcbuilder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,11 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.myapplication.CheckOutActivity;
 import com.example.myapplication.Entity.ComponentType;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.Interface.IPCTypeChange;
 import com.example.myapplication.R;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class PcBuilderFragment extends Fragment {
@@ -27,19 +33,83 @@ public class PcBuilderFragment extends Fragment {
             new ComponentType("Monitor","Display Device")
     };
 
+    float subtotal = 0 ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_pcbuilder,container,false);
         //recycle view
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.typeList);
+        TextView subtotalView = view.findViewById(R.id.total);
+
+        //generate sample data
         InjectItem();
+        NumberFormat fmt = NumberFormat.getCurrencyInstance();
+        //create adapter and setting
         PCBuilderRecycleViewAdapter adapter = new PCBuilderRecycleViewAdapter(view.getContext(),types);
+        adapter.setPcTypeChange(new IPCTypeChange() {
+            @Override
+            public void onCheckChange(int typePosition, int itemPosition,boolean state) {
+                //fetch item
+                Item item = types[typePosition].getItem(itemPosition);
+                if(state)
+                {
+                    //add this item to cost
+                    subtotal += item.getQuantityPrice();
+                }
+                else{
+                    subtotal -= item.getQuantityPrice();
+                }
+                //display
+                subtotalView.setText(fmt.format(subtotal));
+            }
+
+            @Override
+            public void onItemRemove(int itemPosition, float price) {
+                subtotal -= price;
+                subtotalView.setText(fmt.format(subtotal));
+            }
+        });
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.VERTICAL,false));
         recyclerView.setAdapter(adapter);
 
+        //compute subtotal
+        subtotal = 0;
+        for(int i=0;i<types.length;i++)
+        {
+            subtotal += types[i].getCheckPrice();
+        }
+        subtotalView.setText(fmt.format(subtotal));
+
+        //set CHECKOUT
+        Button checkOut = view.findViewById(R.id.checkOut);
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Item> savedItems = new ArrayList<>();
+                //get the list of selected
+                for(int i=0;i< types.length;i++)
+                {
+                    ArrayList<Item> items = types[i].getItems();
+                    for(int j=0;j<items.size();j++)
+                    {
+                        if(!types[i].getChecked(j)) continue;
+                        //this item is checked please add this one to the check out list
+                        savedItems.add(items.get(j));
+                    }
+                }
+                //Reject if there are no item to add
+                if(savedItems.size() == 0) return;
+
+                Intent intent =new Intent(getActivity(), CheckOutActivity.class);
+                Bundle args = new Bundle();
+                args.putSerializable("items",savedItems);
+                intent.putExtra("Bundle",args);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

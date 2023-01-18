@@ -60,9 +60,50 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:overScrollMode="never"
             android:paddingStart="20dp"
             android:paddingEnd="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="0"
+            android:background="@drawable/rounded_layout"
+            android:gravity="bottom|top"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:paddingStart="5dp"
+                android:text="200"
+                android:textAlignment="inherit"
+                android:textColor="#000000"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/checkOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#3E5890"
+                android:insetTop="6dp"
+                android:insetBottom="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Check out"
+                android:textStyle="bold"
+                app:cornerRadius="30dp" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

@@ -143,7 +143,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
 
             subtractButton = itemView.findViewById(R.id.subtract_button);
             addButton = itemView.findViewById(R.id.add_button);
-            removeButton = itemView.findViewById(R.id.remove);
+            removeButton = itemView.findViewById(R.id.card);
         }
     }
 }

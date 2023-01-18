@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,12 +24,14 @@ public class PCBuilderAdapter extends RecyclerView.Adapter<PCBuilderAdapter.MyVi
 
     Context context;
     ArrayList<Item> items;
+    ArrayList<Boolean> checkeds;
     IPCItemChange pcItemChange;
 
-    public  PCBuilderAdapter(Context context, ArrayList<Item> items)
+    public  PCBuilderAdapter(Context context, ArrayList<Item> items,ArrayList<Boolean> checkeds)
     {
         this.context =context;
         this.items = items;
+        this.checkeds = checkeds;
     }
     public  void setPCItemChange(IPCItemChange ipcItemChange)
     {
@@ -49,6 +52,13 @@ public class PCBuilderAdapter extends RecyclerView.Adapter<PCBuilderAdapter.MyVi
         Item item = items.get(position);
 
         //set checkBox
+        holder.checkBox.setChecked(checkeds.get(position));
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                pcItemChange.CheckBox(b,position);
+            }
+        });
 
         holder.imageView.setImageResource(item.getImage());
         holder.nameText.setText(item.getName());

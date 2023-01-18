@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.cart.Cart_RecycleViewAdapter;
 
 import java.util.ArrayList;
 
@@ -67,7 +66,7 @@ public class PCCardRecycleViewAdapter extends RecyclerView.Adapter<PCCardRecycle
 
             subtractButton = itemView.findViewById(R.id.subtract_button);
             addButton = itemView.findViewById(R.id.add_button);
-            removeButton = itemView.findViewById(R.id.remove);
+            removeButton = itemView.findViewById(R.id.card);
         }
     }
 }

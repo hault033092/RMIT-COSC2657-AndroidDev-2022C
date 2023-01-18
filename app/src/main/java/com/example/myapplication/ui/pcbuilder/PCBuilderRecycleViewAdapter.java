@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.pcbuilder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.example.myapplication.Adapter.PCBuilderAdapter;
 import com.example.myapplication.Entity.ComponentType;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.Interface.IPCItemChange;
+import com.example.myapplication.Interface.IPCTypeChange;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.cart.Cart_RecycleViewAdapter;
 
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 
 public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderRecycleViewAdapter.MyViewHolder> {
 
+    IPCTypeChange typeChange;
     Context context;
     ComponentType[] types;
     public PCBuilderRecycleViewAdapter(Context context, ComponentType[] itemType)
@@ -33,6 +36,11 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
         this.context = context;
         types = itemType;
     }
+    public  void setPcTypeChange(IPCTypeChange typeChange)
+    {
+        this.typeChange = typeChange;
+    }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,19 +51,28 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
 
 
     @Override
-    public void onBindViewHolder(@NonNull PCBuilderRecycleViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PCBuilderRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         ComponentType type = types[position];
         holder.headerText.setText(type.getTypeName());
         holder.subHeaderText.setText(type.getTypeSub());
         //assign adapter
-        PCBuilderAdapter adapter = new PCBuilderAdapter(context,type.getItems());
+        PCBuilderAdapter adapter = new PCBuilderAdapter(context,type.getItems(),type.getCheckeds());
         adapter.setPCItemChange(new IPCItemChange() {
             @Override
             public void RemoveItem(Item item, int position) {
                 adapter.notifyItemRemoved(position);
                 adapter.notifyItemRangeChanged(position,type.getItems().size());
-                type.getItems().remove(position);
+                //remove both checked and item
+                float removedPrice = type.removeComponent(position);
+                typeChange.onItemRemove(position,removedPrice);
+            }
+
+            @Override
+            public void CheckBox(boolean value,int itemPosition) {
+                type.updateChecked(value,itemPosition);
+                //compute the total
+                typeChange.onCheckChange(position,itemPosition,value);
             }
         });
 
