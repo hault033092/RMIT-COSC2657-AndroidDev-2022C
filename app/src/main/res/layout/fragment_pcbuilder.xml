@@ -19,7 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingStart="20dp"
             android:paddingTop="10dp"
+            android:paddingEnd="20dp"
             android:paddingBottom="0dp">
 
 
@@ -29,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="2"
-                android:paddingStart="20dp"
+                android:paddingStart="0dp"
                 android:text="PC Builder"
                 android:textAlignment="gravity"
                 android:textColor="#000000"
@@ -40,7 +42,7 @@
                 android:id="@+id/subHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
+                android:paddingStart="0dp"
                 android:text="Build and customise your own PC here!"
                 android:textColor="#66000000"
                 android:textStyle="bold" />
@@ -48,16 +50,19 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/l_gray"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/typeList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             android:overScrollMode="never"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp" />
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
 
     </LinearLayout>
 </ScrollView>

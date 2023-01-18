@@ -8,7 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="l_white">#33FFFFFF</color>
+    <color name="d_white">#99FFFFFF</color>
     <color name="l_gray">#BBd3d3d3</color>
+    <color name="d_gray">#BB5e5e5e</color>
 
     <color name="l_Green">#3300E879</color>
     <color name="l_Blue">#4436AFF5</color>

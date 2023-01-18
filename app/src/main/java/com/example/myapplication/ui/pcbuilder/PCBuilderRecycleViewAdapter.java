@@ -12,10 +12,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Adapter.PCBuilderAdapter;
 import com.example.myapplication.Entity.ComponentType;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.Interface.IPCItemChange;
 import com.example.myapplication.R;
 import com.example.myapplication.ui.cart.Cart_RecycleViewAdapter;
 
@@ -42,13 +45,32 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
     @Override
     public void onBindViewHolder(@NonNull PCBuilderRecycleViewAdapter.MyViewHolder holder, int position) {
 
+        ComponentType type = types[position];
+        holder.headerText.setText(type.getTypeName());
+        holder.subHeaderText.setText(type.getTypeSub());
         //assign adapter
-        holder.headerText.setText(types[position].getTypeName());
-        holder.subHeaderText.setText(types[position].getTypeSub());
+        PCBuilderAdapter adapter = new PCBuilderAdapter(context,type.getItems());
+        adapter.setPCItemChange(new IPCItemChange() {
+            @Override
+            public void RemoveItem(Item item, int position) {
+                adapter.notifyItemRemoved(position);
+                adapter.notifyItemRangeChanged(position,type.getItems().size());
+                type.getItems().remove(position);
+            }
+        });
+
+        holder.recycle.setHasFixedSize(false);
+        holder.recycle.setLayoutManager(new LinearLayoutManager(context,RecyclerView.VERTICAL,false));
+        holder.recycle.setAdapter(adapter);
         //assign component
 
         //set click button
+        holder.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
         //update color to icon color to blue on even position
         int mod = position %4;
         int colorIndex = 0;
@@ -100,7 +122,7 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
             subHeaderText = itemView.findViewById(R.id.item_specialies);
 
             recycle = itemView.findViewById(R.id.recyclerView);
-            addButton = itemView.findViewById(R.id.add_button);
+            addButton = itemView.findViewById(R.id.add_Button);
         }
     }
 }

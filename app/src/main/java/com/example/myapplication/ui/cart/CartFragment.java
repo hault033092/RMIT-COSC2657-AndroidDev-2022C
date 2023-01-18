@@ -50,7 +50,7 @@ public class CartFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.cartView);
         Cart_RecycleViewAdapter adapter = new Cart_RecycleViewAdapter(view.getContext(), itemList);
 
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 

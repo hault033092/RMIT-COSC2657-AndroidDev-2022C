@@ -4,8 +4,8 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/rounded_layout"
     android:backgroundTint="#3300E879"
     android:paddingStart="10dp"
@@ -42,18 +42,30 @@
             android:text="Central Processing Unit"
             android:textColor="#99000000" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="0"
+            android:background="@color/d_gray"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="20dp"
+            android:background="#1A000000"
+            android:paddingStart="10dp"
             android:paddingTop="10dp"
-            android:paddingEnd="20dp" />
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp" />
 
         <FrameLayout
+            android:id="@+id/add_Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="0dp">
 
             <View
                 android:id="@+id/addButtonView"
