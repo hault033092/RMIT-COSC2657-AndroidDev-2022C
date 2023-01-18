@@ -43,6 +43,7 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
                 searchAdapter.getFilter().filter(s);
+
                 return true;
             }
 

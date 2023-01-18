@@ -1,5 +1,6 @@
 package com.example.myapplication.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         return i;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View view1 = view;
@@ -62,17 +64,14 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         itemImage.setImageResource(searchItem.getImage());
         itemName.setText(searchItem.getName());
         itemSpecification.setText(searchItem.getSpecification());
-        itemPrice.setText(searchItem.getPriceAsString());
+        itemPrice.setText("$" + searchItem.getPrice());
+        searchItem.setAmount(1);
 
 
-        view1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, ItemDetailActivity.class);
-                intent.putExtra("item", searchItem);
-                view.setBackgroundResource(R.drawable.rounded_rectangle_bordered);
-                context.startActivity(intent);
-            }
+        view1.setOnClickListener(view2 -> {
+            Intent intent = new Intent(context, ItemDetailActivity.class);
+            intent.putExtra("item", searchItem);
+            context.startActivity(intent);
         });
 
         return view1;
@@ -80,7 +79,9 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Filter getFilter() {
-        Filter searchFilter = new Filter() {
+
+        return new Filter() {
+
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
                 FilterResults filteredResults = new FilterResults();
@@ -111,7 +112,5 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
                 notifyDataSetChanged();
             }
         };
-
-        return searchFilter;
     }
 }

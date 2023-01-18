@@ -11,8 +11,6 @@ public class Item implements Serializable {
     int amount;
 
     // Constructor for ItemDetail Activity
-
-
     public Item(int image, String name, String specification, String description, float price, int amount) {
         this.image = image;
         this.name = name;
