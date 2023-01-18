@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -11,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.Adapter.CheckOutAdapter;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.Interface.IConfirmLocation;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 
@@ -38,8 +41,6 @@ public class CheckOutActivity extends AppCompatActivity {
 
     private GoogleMap mMap;
 
-
-    private final static int PLACE_PICKER_REQUEST = 999;
     private final static int LOCATION_REQUEST_CODE = 23;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CheckOutActivity.this,MapsActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,LOCATION_REQUEST_CODE);
 
             }
         });
@@ -113,5 +114,20 @@ public class CheckOutActivity extends AppCompatActivity {
 
         total.setText(fmt.format(totalCost));
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            //check successful
+            if (resultCode == RESULT_OK) {
+
+                String address = data.getExtras().getString("address");
+                TextView location = findViewById(R.id.locationView);
+                location.setText(address);
+
+            }
+        }
     }
 }

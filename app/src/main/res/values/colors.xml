@@ -20,4 +20,7 @@
     <color name="d_DarkBlue">#BB2C3E64</color>
     <color name="d_Purple">#CC2F2345</color>
 
+    <color name="f_Green">#FF00E879</color>
+    <color name="f_Blue">#FF3E5890</color>
+
 </resources>

@@ -6,6 +6,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -22,6 +23,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.myapplication.Interface.IConfirmLocation;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -42,7 +44,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, IConfirmLocation {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -178,8 +180,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 ft.remove(prev);
             }
             ft.addToBackStack(null);
-            DialogFragment dialogFragment = new ConfirmAddress();
-
+            ConfirmAddress dialogFragment = new ConfirmAddress();
+            dialogFragment.setCallBack(this);
             Bundle args = new Bundle();
             args.putDouble("lat", latLng.latitude);
             args.putDouble("long", latLng.longitude);
@@ -228,4 +230,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
 
+    @Override
+    public void confirmLocation(String address) {
+        Intent returnIntent = new Intent();
+        Log.d("passing address------",address+"---------------------------------");
+        returnIntent.putExtra("address",address);
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+    }
 }
