@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +42,9 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         //item count
-//        String itemCount = itemList.size() + " items";
-//        TextView itemCountView = view.findViewById(R.id.subHeader);
-//        itemCountView.setText(itemCount);
+        String itemCount = itemList.size() + " items";
+        TextView itemCountView = view.findViewById(R.id.subHeader);
+        itemCountView.setText(itemCount);
 
         //recycle view
         RecyclerView recyclerView = view.findViewById(R.id.cartView);
@@ -53,7 +54,7 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-
+        FrameLayout layout = view.findViewById(R.id.no_Item);
         if(itemList.size() == 0)
         {
             DisplayEmptyCart(true);
@@ -150,8 +151,10 @@ public class CartFragment extends Fragment {
 //    }
 
     private void DisplayEmptyCart(boolean state) {
-        FrameLayout layout = getView().findViewById(R.id.no_Item);
-
+         View v = getView();
+         if(v == null) return;//some how happens
+        FrameLayout layout = v.findViewById(R.id.no_Item);
+        Log.d("check view","has this ever been called---------------------------");
         if(state) {
             layout.setVisibility(View.VISIBLE);
         }
