@@ -59,6 +59,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
         Log.d("ITEM CHECK",item.toString());
         holder.imageView.setImageResource(item.getImage());
         holder.nameText.setText(item.getName());
+        holder.specText.setText(item.getSpecification());
         holder.priceText.setText(fmt.format(item.getPrice()));
         holder.amountText.setText(String.valueOf(item.getAmount()));
 
@@ -128,6 +129,7 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
         ImageView imageView;
         ImageView backView;
         TextView nameText;
+        TextView specText;
         TextView priceText;
         TextView amountText;
 
@@ -141,6 +143,8 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
             imageView = itemView.findViewById(R.id.itemImage);
             backView = itemView.findViewById(R.id.item_background);
             nameText = itemView.findViewById(R.id.itemName);
+            specText = itemView.findViewById(R.id.itemSpec);
+
             priceText = itemView.findViewById(R.id.cost_text);
             amountText = itemView.findViewById(R.id.amount_text);
 

@@ -29,14 +29,14 @@
 
             <ImageView
                 android:id="@+id/item_background"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="125dp"
+                android:layout_height="150dp"
                 app:srcCompat="@drawable/rounded_rectangle" />
 
             <ImageView
                 android:id="@+id/itemImage"
-                android:layout_width="88dp"
-                android:layout_height="88dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_horizontal|center_vertical"
                 app:srcCompat="@drawable/asset_microbit" />
         </FrameLayout>
@@ -50,18 +50,31 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/itemName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="bottom"
-                    android:minLines="2"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="Microbit"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/itemSpec"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="32GB"
+                    android:textColor="#66000000"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
 
             </LinearLayout>
 
@@ -70,7 +83,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginVertical="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

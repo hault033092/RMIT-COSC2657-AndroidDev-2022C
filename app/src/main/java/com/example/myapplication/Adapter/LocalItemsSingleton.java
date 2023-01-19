@@ -31,7 +31,7 @@ public class LocalItemsSingleton {
     public void removeItem(int position)
     {
         if(localCartChange ==null) {
-            Log.d("MISSING INJECTION","PLEASE ADD CALL BACK TO THIS SINGLETONG");
+            Log.d("MISSING INJECTION","PLEASE ADD CALL BACK TO THIS SINGLETON");
         }
         localCartChange.notifyItemChange(position,cart.size());
         cart.remove(position);
@@ -39,7 +39,7 @@ public class LocalItemsSingleton {
     public void clear()
     {
         if(localCartChange ==null) {
-            Log.d("MISSING INJECTION","PLEASE ADD CALL BACK TO THIS SINGLETONG");
+            Log.d("MISSING INJECTION","PLEASE ADD CALL BACK TO THIS SINGLETON");
         }
         cart.clear();
         localCartChange.notifyClear();
@@ -47,7 +47,7 @@ public class LocalItemsSingleton {
     public void addCart(Item item)
     {
         if(localCartChange ==null) {
-            Log.d("MISSING INJECTION","PLEASE ADD CALL BACK TO THIS SINGLETONG");
+            Log.d("MISSING INJECTION","PLEASE ADD CALL BACK TO THIS SINGLETON");
         }
         cart.add(item);
         localCartChange.notifyInsert(cart.size());
@@ -58,7 +58,7 @@ public class LocalItemsSingleton {
     {
         if (instance == null) {
             instance = new LocalItemsSingleton();
-            GenerateTestingData();
+//            GenerateTestingData();
         }
 
         return instance;
@@ -75,11 +75,11 @@ public class LocalItemsSingleton {
     private static void GenerateTestingData() {
         Item item = new Item(R.drawable.asset_microbit, "Microbit", "V1", 15.00f,1);
         Item item2 = new Item(R.drawable.asset_microbit, "Ram DDR", "4GB",10.00f, 2);
-        //Item item3 = new Item(R.drawable.asset_microbit, "Monitor RT", "Model 1572", 55.00f, 1);
+        Item item3 = new Item(R.drawable.asset_microbit, "Monitor RT", "Model 1572", 55.00f, 1);
         Item item4 = new Item(R.drawable.asset_microbit, "Razor Gaming mouse", "V2", 105.00f, 3);
         cart.add(item);
         cart.add(item2);
-        //cart.add(item3);
+        cart.add(item3);
         cart.add(item4);
     }
 }

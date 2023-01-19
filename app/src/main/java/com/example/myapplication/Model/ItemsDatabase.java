@@ -21,8 +21,8 @@ public class ItemsDatabase {
                 "MSI GeForce VGA", "MSI GeForce VGA"
         };
 
-        String[] specifications = {"(4GB)", "(8GB)", "(16GB)", "(32GB)", "(64GB)", "(128GB)",
-                "(V2)", "(V2)", "(V2)", "(V2)", "(V2)", "(V2)","RTX 4070 Ti SUPRIM x12G","RTX 4070 Ti GAMING x12G"};
+        String[] specifications = {"4GB", "8GB", "16GB", "32GB", "64GB", "128GB",
+                "V2", "V2", "V2", "V2", "V2", "V2","RTX 4070 Ti SUPRIM x12G","RTX 4070 Ti GAMING x12G"};
 
         String[] descriptions = {"Lorem ipsum ", "Lorem ipsum", "Lorem ipsum", "Lorem ipsum", "Lorem ipsum", "Lorem ipsum",
                 "Lorem ipsum", "Lorem ipsum", "Lorem ipsum", "Lorem ipsum", "Lorem ipsum", "Lorem ipsum",

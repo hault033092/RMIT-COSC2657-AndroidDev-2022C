@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import com.example.myapplication.Adapter.LocalItemsSingleton;
 import com.example.myapplication.Entity.Item;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class ItemDetailActivity extends AppCompatActivity {
@@ -85,8 +83,9 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         cartButton.setOnClickListener(view -> {
 
+
             LocalItemsSingleton.getInstance().addCart(myItem);
-            Toast.makeText(view.getContext(), myItem.getName() + " has been added to cart",Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), myItem.getName() + " " + myItem.getSpecification() + " has been added to cart",Toast.LENGTH_SHORT).show();
         });
     }
 }
