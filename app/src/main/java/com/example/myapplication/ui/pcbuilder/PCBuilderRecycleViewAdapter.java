@@ -1,4 +1,4 @@
-package com.example.myapplication.pcbuilder;
+package com.example.myapplication.ui.pcbuilder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
