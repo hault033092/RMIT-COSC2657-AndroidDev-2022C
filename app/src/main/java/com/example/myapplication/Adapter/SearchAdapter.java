@@ -73,7 +73,7 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         searchItem.setAmount(1);
 
 
-        view1.setOnClickListener(view2 -> {
+        view1.setOnClickListener(v -> {
             Intent intent = new Intent(context, ItemDetailActivity.class);
             intent.putExtra("item", searchItem);
             context.startActivity(intent);

@@ -1,8 +1,10 @@
 package com.example.myapplication.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,13 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.example.myapplication.AboutUsActivity;
 import com.example.myapplication.Adapter.HomeCateAdapter;
 import com.example.myapplication.Adapter.HomeRecommendAdapter;
-import com.example.myapplication.Adapter.SearchAdapter;
+import com.example.myapplication.ContactUsActivity;
 import com.example.myapplication.Entity.Category;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.ItemListActivity;
@@ -37,20 +38,40 @@ public class HomeFragment extends Fragment {
             new Category(R.drawable.storagedrive_icon,"Storage Drive")
     };
     List<Item> itemsList = ItemsDatabase.retrieveAllSearchItems();
+    Context context;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =inflater.inflate(R.layout.fragment_home,container,false);
-        //recycle view
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.cateView);
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
+
+        context = container.getContext();
+
+        // Contact & About Buttons
+        AppCompatButton aboutUs = view.findViewById(R.id.aboutUs);
+        AppCompatButton contactUs = view.findViewById(R.id.contactUs);
+
+        // Onclick events for buttons
+        aboutUs.setOnClickListener(view1 -> {
+            Intent i = new Intent(context, AboutUsActivity.class);
+            context.startActivity(i);
+        });
+
+        contactUs.setOnClickListener(view1 -> {
+            Intent i = new Intent(context, ContactUsActivity.class);
+            context.startActivity(i);
+        });
+
+        // Recycler view
+        RecyclerView recyclerView = view.findViewById(R.id.cateView);
 
         ArrayList<Item> subList = new ArrayList<>() ;
         for(int i =0;i<4;i++)
         {
             subList.add(itemsList.get(i));
         }
-        //Adapter
+        // Adapter
         HomeCateAdapter homeAdapter = new HomeCateAdapter(view.getContext(),cates);
         HomeRecommendAdapter recommendAdapter = new HomeRecommendAdapter(view.getContext(),subList);
 
@@ -59,22 +80,19 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(homeAdapter);
 
         //Grid use 4 slots
-        RecyclerView recommentView = view.findViewById(R.id.recommentList);
-        recommentView.setHasFixedSize(true);
+        RecyclerView recommendView = view.findViewById(R.id.recommendList);
+        recommendView.setHasFixedSize(true);
         GridLayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);
 
-        recommentView.setLayoutManager(mLayoutManager);
-        recommentView.setAdapter(recommendAdapter);
+        recommendView.setLayoutManager(mLayoutManager);
+        recommendView.setAdapter(recommendAdapter);
 
-        //Add Show ALL BUTTON
+        // Add Show ALL BUTTON
         TextView showAll = view.findViewById(R.id.show_all);
-        showAll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), ItemListActivity.class);
-                i.putExtra("passTAG","All");
-                getContext().startActivity(i);
-            }
+        showAll.setOnClickListener(view1 -> {
+            Intent i = new Intent(getContext(), ItemListActivity.class);
+            i.putExtra("passTAG","All");
+            getContext().startActivity(i);
         });
 
 

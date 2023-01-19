@@ -53,29 +53,23 @@ public class ConfirmAddress extends DialogFragment  implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_confirm_address, container, false);
-        TextView myAddress=(TextView)v.findViewById(R.id.myAddress);
-        Button SelectBtn=(Button) v.findViewById(R.id.Select);
-        Button ChangeBtn=(Button) v.findViewById(R.id.Change);
+        TextView myAddress = v.findViewById(R.id.myAddress);
+        Button SelectBtn = v.findViewById(R.id.Select);
+        Button ChangeBtn = v.findViewById(R.id.Change);
 
         myAddress.setText(Address);
-        SelectBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(),myAddress.getText().toString(), Toast.LENGTH_LONG).show();
-                //getFragmentManager().beginTransaction().remove(mapFragment).commit();
-                if(confirmLocation !=null)
-                {
-                    confirmLocation.confirmLocation(myAddress.getText().toString());
-                }
-                dismiss();
+        SelectBtn.setOnClickListener(v1 -> {
+            Toast.makeText(getActivity(),myAddress.getText().toString(), Toast.LENGTH_LONG).show();
+            //getFragmentManager().beginTransaction().remove(mapFragment).commit();
+            if(confirmLocation !=null)
+            {
+                confirmLocation.confirmLocation(myAddress.getText().toString());
             }
+            dismiss();
         });
-        ChangeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //getFragmentManager().beginTransaction().remove(mapFragment).commit();
-                dismiss();
-            }
+        ChangeBtn.setOnClickListener(v2 -> {
+            //getFragmentManager().beginTransaction().remove(mapFragment).commit();
+            dismiss();
         });
         getDialog().setCanceledOnTouchOutside(true);
         return v;

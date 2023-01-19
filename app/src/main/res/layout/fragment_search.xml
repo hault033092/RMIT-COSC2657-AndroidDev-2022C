@@ -15,15 +15,15 @@
         android:orientation="vertical"
         android:paddingHorizontal="10dp"
         android:paddingTop="10dp"
-        android:paddingBottom="0dp">
+        android:paddingBottom="0dp"
+        tools:ignore="InefficientWeight">
 
         <TextView
             android:id="@+id/item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:text="Search"
+            android:text="@string/search"
             android:textAlignment="gravity"
             android:textColor="#CC000000"
             android:textSize="30sp"
@@ -33,9 +33,7 @@
             android:id="@+id/subHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="20dp"
-            android:paddingStart="0dp"
-            android:text="Find your item here"
+            android:text="@string/search_prompt"
             android:textColor="#66000000"
             android:textStyle="bold" />
 

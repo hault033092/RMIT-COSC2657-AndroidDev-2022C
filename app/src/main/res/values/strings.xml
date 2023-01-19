@@ -103,5 +103,19 @@
     <string name="title_activity_maps">MapsActivity</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_slogan">We construct dreams</string>
+    <string name="advertisement">advertisement</string>
+    <string name="logo">logo</string>
+    <string name="recommended">Recommended</string>
+    <string name="show_all"><![CDATA[Show all>>]]></string>
+    <string name="about_us">About Us</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="search">Search</string>
+    <string name="search_prompt">Find your item here</string>
+    <string name="send_button">send</string>
+    <string name="form_title">contact us</string>
+    <string name="email_prompt">Your email address</string>
+    <string name="subject_prompt">Your subject</string>
+    <string name="body_prompt">Message body</string>
 
 </resources>
