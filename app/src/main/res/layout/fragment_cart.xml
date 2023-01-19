@@ -79,8 +79,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:overScrollMode="never"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
             tools:visibility="visible" />
 
         <FrameLayout

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,10 +54,11 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
 
         Item item = items.get(position);
+
+        holder.imageView.setImageResource(item.getImage());
         holder.nameText.setText(item.getName());
         holder.priceText.setText(fmt.format(item.getPrice()));
         holder.amountText.setText(String.valueOf(item.getAmount()));
-        holder.imageView.setImageResource(item.getImage());
 
         //set click button
         holder.card.setOnClickListener(view -> {
@@ -135,9 +137,9 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
             super(itemView);
             card = itemView.findViewById(R.id.Card);
 
-            imageView = itemView.findViewById(R.id.item_image);
+            imageView = itemView.findViewById(R.id.itemImage);
             backView = itemView.findViewById(R.id.item_background);
-            nameText = itemView.findViewById(R.id.name_text);
+            nameText = itemView.findViewById(R.id.itemName);
             priceText = itemView.findViewById(R.id.cost_text);
             amountText = itemView.findViewById(R.id.amount_text);
 
