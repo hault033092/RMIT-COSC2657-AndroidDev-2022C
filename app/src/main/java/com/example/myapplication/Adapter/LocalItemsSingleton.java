@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.myapplication.Entity.ComponentType;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.Entity.Ranking;
 import com.example.myapplication.Interface.ILocalCartChange;
 import com.example.myapplication.R;
 
@@ -71,6 +72,17 @@ public class LocalItemsSingleton {
         //detect the index of the type
         int index = item.getTypeIndex();
         types[index].addComponent(item);
+    }
+
+    Ranking[] rankings = {
+            new Ranking("for Programming", 560),
+            new Ranking("for Gaming", 805 ),
+            new Ranking("for Video Editing",1518),
+            new Ranking("for 3D Modeling",1049)
+    };
+
+    public Ranking[] getRankings(){
+        return rankings;
     }
     //GENERATE SINGLETON
     public static LocalItemsSingleton getInstance()

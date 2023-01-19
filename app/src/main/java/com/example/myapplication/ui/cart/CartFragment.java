@@ -127,6 +127,11 @@ public class CartFragment extends Fragment implements ILocalCartChange {
                 float taxes = subtotalCost * 5 / 100;
                 float totalCost = subtotalCost + taxes;
 
+                int itemSize =LocalItemsSingleton.getInstance().getCartSize();
+                //item count
+                String itemCount = itemSize + " items";
+                itemCountView.setText(itemCount);
+
                 subtotal.setText( fmt.format(subtotalCost));
                 tax.setText(fmt.format(taxes));
                 total.setText(fmt.format(totalCost));
@@ -142,7 +147,7 @@ public class CartFragment extends Fragment implements ILocalCartChange {
         TextView clear = view.findViewById(R.id.clear);
         clear.setOnClickListener(view1 -> {
             LocalItemsSingleton.getInstance().clear();
-
+            itemCountView.setText("0 items");
             subtotal.setText("$0.00");
             tax.setText("$0.00");
             total.setText("$0.00");

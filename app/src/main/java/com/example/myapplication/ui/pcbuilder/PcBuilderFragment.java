@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.Adapter.LocalItemsSingleton;
+import com.example.myapplication.Adapter.RankingAdapter;
 import com.example.myapplication.CheckOutActivity;
 import com.example.myapplication.Entity.ComponentType;
 import com.example.myapplication.Entity.Item;
@@ -38,29 +40,6 @@ public class PcBuilderFragment extends Fragment {
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
         //create adapter and setting
         PCBuilderRecycleViewAdapter adapter = new PCBuilderRecycleViewAdapter(view.getContext(),types);
-        adapter.setPcTypeChange(new IPCTypeChange() {
-            @Override
-            public void onCheckChange(int typePosition, int itemPosition,boolean state) {
-                //fetch item
-                Item item = types[typePosition].getItem(itemPosition);
-                if(state)
-                {
-                    //add this item to cost
-                    subtotal += item.getQuantityPrice();
-                }
-                else{
-                    subtotal -= item.getQuantityPrice();
-                }
-                //display
-                subtotalView.setText(fmt.format(subtotal));
-            }
-
-            @Override
-            public void onItemRemove(int itemPosition, float price) {
-                subtotal -= price;
-                subtotalView.setText(fmt.format(subtotal));
-            }
-        });
 
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.VERTICAL,false));
@@ -74,6 +53,42 @@ public class PcBuilderFragment extends Fragment {
         }
         subtotalView.setText(fmt.format(subtotal));
 
+        //set Ranking
+        RecyclerView rankingView = view.findViewById(R.id.rankingList);
+        RankingAdapter rankingAdapter = new RankingAdapter(view.getContext(),LocalItemsSingleton.getInstance().getRankings());
+
+        rankingView.setHasFixedSize(true);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);
+        rankingView.setLayoutManager(mLayoutManager);
+        rankingView.setAdapter(rankingAdapter);
+
+        //set ranking
+        rankingAdapter.checkScore( Math.round(subtotal));
+        //
+        adapter.setPcTypeChange(new IPCTypeChange() {
+            @Override
+            public void onCheckChange(int typePosition, int itemPosition,boolean state) {
+                //fetch item
+                Item item = types[typePosition].getItem(itemPosition);
+                if(state)
+                {
+                    //add this item to cost
+                    subtotal += item.getQuantityPrice();
+                }
+                else{
+                    subtotal -= item.getQuantityPrice();
+                }
+                rankingAdapter.checkScore( Math.round(subtotal));
+                //display
+                subtotalView.setText(fmt.format(subtotal));
+            }
+
+            @Override
+            public void onItemRemove(int itemPosition, float price) {
+                subtotal -= price;
+                subtotalView.setText(fmt.format(subtotal));
+            }
+        });
         //set CHECKOUT
         Button checkOut = view.findViewById(R.id.checkOut);
         checkOut.setOnClickListener(new View.OnClickListener() {

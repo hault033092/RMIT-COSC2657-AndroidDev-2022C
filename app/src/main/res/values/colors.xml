@@ -26,4 +26,11 @@
     <color name="f_Green">#FF00E879</color>
     <color name="f_Blue">#FF3E5890</color>
 
+    <color name="r_red">#AAFA000F</color>
+    <color name="r_orange">#AAF06100</color>
+    <color name="r_yellow">#AAF0C70A</color>
+    <color name="r_greenYellow">#AACBF00B</color>
+    <color name="r_green">#AA1DF03D</color>
+
+
 </resources>
