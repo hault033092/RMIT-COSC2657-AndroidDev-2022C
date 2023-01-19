@@ -72,7 +72,7 @@ public class CartFragment extends Fragment implements ILocalCartChange {
         RecyclerView recyclerView = view.findViewById(R.id.cartView);
         adapter = new Cart_RecycleViewAdapter(view.getContext(), LocalItemsSingleton.getInstance().getCart());
 
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 

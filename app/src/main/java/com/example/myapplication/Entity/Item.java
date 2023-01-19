@@ -110,4 +110,18 @@ public class Item implements Serializable {
     }
 
     public String getAmountAsString() { return String.valueOf(amount); }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "image=" + image +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", score=" + score +
+                ", specification='" + specification + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", amount=" + amount +
+                '}';
+    }
 }

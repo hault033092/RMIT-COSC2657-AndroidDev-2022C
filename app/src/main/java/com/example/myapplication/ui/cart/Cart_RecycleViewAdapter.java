@@ -55,6 +55,8 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
 
         Item item = items.get(position);
 
+        //check input
+        Log.d("ITEM CHECK",item.toString());
         holder.imageView.setImageResource(item.getImage());
         holder.nameText.setText(item.getName());
         holder.priceText.setText(fmt.format(item.getPrice()));
@@ -98,7 +100,6 @@ public class Cart_RecycleViewAdapter extends RecyclerView.Adapter<Cart_RecycleVi
         //update color to icon color to blue on even position
         int mod = position % 4;
         Resources res = context.getResources();
-        Log.d("testing","mod is:"+mod);
         if(mod == 0)
         {
             holder.backView.setColorFilter(res.getColor(R.color.l_Green));
