@@ -9,11 +9,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.myapplication.Adapter.HomeCateAdapter;
+import com.example.myapplication.Adapter.SearchAdapter;
 import com.example.myapplication.Entity.Category;
+import com.example.myapplication.Entity.Item;
+import com.example.myapplication.Model.ItemsDatabase;
 import com.example.myapplication.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     Category[] cates = {
@@ -24,6 +32,7 @@ public class HomeFragment extends Fragment {
             new Category(R.drawable.vga_icon,"VGA"),
             new Category(R.drawable.storagedrive_icon,"Storage Drive")
     };
+    List<Item> itemsList = ItemsDatabase.retrieveAllSearchItems();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +47,17 @@ public class HomeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.HORIZONTAL,false));
         recyclerView.setAdapter(homeAdapter);
+
+        ArrayList<Item> subList = new ArrayList<>() ;
+        for(int i =0;i<4;i++)
+        {
+            subList.add(itemsList.get(i));
+        }
+        //Grid use 4 slots
+        GridView gridView = view.findViewById(R.id.itemsGrid);
+        SearchAdapter searchAdapter = new SearchAdapter(subList, getContext());
+        gridView.setAdapter(searchAdapter);
+
 
         return view;
     }

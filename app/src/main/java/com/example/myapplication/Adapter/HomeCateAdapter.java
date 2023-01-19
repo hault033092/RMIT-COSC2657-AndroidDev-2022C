@@ -1,6 +1,7 @@
 package com.example.myapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Entity.Category;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.ItemListActivity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -43,7 +45,9 @@ public class HomeCateAdapter extends RecyclerView.Adapter<HomeCateAdapter.MyView
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(context, ItemListActivity.class);
+                i.putExtra("passTAG",c.getName());
+                context.startActivity(i);
             }
         });
         Resources res = context.getResources();

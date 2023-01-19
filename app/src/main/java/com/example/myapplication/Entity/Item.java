@@ -6,10 +6,15 @@ public class Item implements Serializable {
     int image;
     String name;
     String type;
+    float score;
     String specification;
     String description;
     float price;
     int amount;
+
+    public String getType() {
+        return type;
+    }
 
     // Constructor for ItemDetail Activity
     public Item(int image, String name, String specification, String description, float price, int amount) {
@@ -37,6 +42,15 @@ public class Item implements Serializable {
         this.specification = specification;
         this.description = description;
         this.price = price;
+    }
+    public Item setType(String type)
+    {
+        this.type = type;
+        return this;
+    }
+    public Item setScore(int s){
+        this.score= s;
+        return this;
     }
 
     //setters

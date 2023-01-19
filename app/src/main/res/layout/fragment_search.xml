@@ -3,57 +3,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.search.SearchFragment"
     android:background="#F7F7F7"
-    android:paddingHorizontal="10dp">
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    tools:context=".ui.search.SearchFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/inventory"
-        android:textColor="#CC000000"
-        android:textSize="30sp"
-        android:textStyle="bold"
+        android:layout_weight="0"
+        android:orientation="vertical"
         android:paddingTop="10dp"
-        android:layout_marginHorizontal="20dp" />
+        android:paddingBottom="0dp">
 
-    <TextView
-        android:id="@+id/subHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sub_header"
-        android:textColor="#66000000"
-        android:textStyle="bold"
-        android:layout_marginHorizontal="20dp" />
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:text="Search"
+            android:textAlignment="gravity"
+            android:textColor="#CC000000"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        <TextView
+            android:id="@+id/subHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingStart="0dp"
+            android:text="Find your item here"
+            android:textColor="#66000000"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/search"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <SearchView
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:queryHint="Search for components..."
-            android:background="@drawable/rounded_rectangle_bordered" />
+            android:background="@drawable/rounded_rectangle_bordered"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:queryHint="Search for components..." />
     </LinearLayout>
 
     <GridView
-        android:overScrollMode="never"
         android:id="@+id/itemsGrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:horizontalSpacing="@dimen/activity_horizontal_margin"
-        android:verticalSpacing="@dimen/activity_vertical_margin"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:horizontalSpacing="10dp"
         android:numColumns="2"
+        android:overScrollMode="never"
         android:paddingBottom="50dp"
-        android:layout_marginTop="50dp" />
+        android:scrollbars="none"
+        android:verticalSpacing="10dp" />
 </LinearLayout>

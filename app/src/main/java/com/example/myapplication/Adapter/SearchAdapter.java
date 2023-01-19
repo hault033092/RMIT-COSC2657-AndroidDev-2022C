@@ -29,6 +29,11 @@ public class SearchAdapter extends BaseAdapter implements Filterable {
         this.filteredItemsList = itemsList;
         this.context = context;
     }
+    public  void SetArrayList(List<Item> itemsList)
+    {
+        this.itemsList = itemsList;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
