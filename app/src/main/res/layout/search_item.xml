@@ -32,6 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:text="name"
             android:textAlignment="textStart"
             android:textColor="#99000000"
