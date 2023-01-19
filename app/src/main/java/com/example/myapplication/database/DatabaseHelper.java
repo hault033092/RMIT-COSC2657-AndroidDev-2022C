@@ -13,6 +13,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COMPONENT_NAME = "name";
     public static final String COMPONENT_SPECIFICATION = "specification";
     public static final String COMPONENT_DESCRIPTION = "description";
+    public static final String COMPONENT_TYPE = "type";
+    public static final String COMPONENT_SCORE = "score";
     public static final String COMPONENT_PRICE = "price";
     private static final String CREATE_COMPONENT_TABLE =
             "create table " + TABLE_COMPONENT + " (" +
@@ -20,6 +22,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     COMPONENT_NAME + " TEXT NOT NULL," +
                     COMPONENT_SPECIFICATION + " TEXT NOT NULL," +
                     COMPONENT_DESCRIPTION + " TEXT NOT NULL," +
+                    COMPONENT_TYPE + " TEXT NOT NULL," +
+                    COMPONENT_SCORE + " TEXT NOT NULL," +
                     COMPONENT_PRICE + " TEXT NOT NULL);";
     public DatabaseHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);

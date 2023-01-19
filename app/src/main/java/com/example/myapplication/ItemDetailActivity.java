@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
@@ -12,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.Entity.Item;
-import com.example.myapplication.ui.cart.CartFragment;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ItemDetailActivity extends AppCompatActivity {
@@ -34,9 +35,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         Button cartButton = findViewById(R.id.cartButton);
 
         //Update current info with intent
-        Intent intent = getIntent();
+        Intent receivedIntent = getIntent();
 
-        Item myItem = (Item) intent.getSerializableExtra("item");
+        Item myItem = (Item) receivedIntent.getSerializableExtra("item");
 
         //get component
         ImageView imageView = findViewById(R.id.imageView);
@@ -81,15 +82,18 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
 
         cartButton.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
-            bundle.putInt("itemImage", myItem.getImage());
-            bundle.putString("itemName", myItem.getName());
-            bundle.putString("itemSpec", myItem.getSpecification());
-            bundle.putString("itemAmount", myItem.getAmountAsString());
-            bundle.putString("itemPrice", myItem.getPriceAsString());
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            RecyclerView recyclerView = new RecyclerView(context);
+//            Cart_RecycleViewAdapter adapter = new Cart_RecycleViewAdapter(context, itemsList);
+//
+//
+//            Bundle bundle = new Bundle();
+//            recyclerView.setArguments(bundle);
+//            fragmentTransaction.add(R.id.cartView, cartFragment).commit();
+//
+//            bundle.putInt("itemImage", myItem.getImage());
 
-            CartFragment cartFragment = new CartFragment();
-            cartFragment.setArguments(bundle);
         });
     }
 }

@@ -7,15 +7,19 @@ public class PcComponent implements Serializable {
     private String name;
     private String specification;
     private String description;
+    private String type;
+    private int score;
     private double price;
 
     public PcComponent() {}
 
-    public PcComponent(long id, String name, String specification, String description, double price) {
+    public PcComponent(long id, String name, String specification, String description, String type, int score, double price) {
         this.id = id;
         this.name = name;
         this.specification = specification;
         this.description = description;
+        this.type = type;
+        this.score = score;
         this.price = price;
     }
 

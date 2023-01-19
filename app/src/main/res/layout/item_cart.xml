@@ -34,7 +34,7 @@
                 app:srcCompat="@drawable/rounded_rectangle" />
 
             <ImageView
-                android:id="@+id/item_image"
+                android:id="@+id/itemImage"
                 android:layout_width="wrap_content"
                 android:layout_height="88dp"
                 android:layout_gravity="center_horizontal|center_vertical"

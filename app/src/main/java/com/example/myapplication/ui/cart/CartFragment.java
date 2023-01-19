@@ -37,7 +37,7 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         //generate data
-//        GenerateTestingData();
+        GenerateTestingData();
 
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
