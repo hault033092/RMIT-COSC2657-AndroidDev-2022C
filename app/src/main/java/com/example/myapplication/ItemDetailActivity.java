@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.LocalItemsSingleton;
 import com.example.myapplication.Entity.Item;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ItemDetailActivity extends AppCompatActivity {
@@ -33,6 +36,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         Button addButton =findViewById(R.id.addButton);
         Button subtractButton = findViewById(R.id.subtractButton);
         Button cartButton = findViewById(R.id.cartButton);
+        Button pcButton = findViewById(R.id.pcButton);
+        LinearLayout purchaseButton = findViewById(R.id.purchaseButton);
 
         //Update current info with intent
         Intent receivedIntent = getIntent();
@@ -82,10 +87,29 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
 
         cartButton.setOnClickListener(view -> {
-
-
             LocalItemsSingleton.getInstance().addCart(myItem);
             Toast.makeText(view.getContext(), myItem.getName() + " " + myItem.getSpecification() + " has been added to cart",Toast.LENGTH_SHORT).show();
+        });
+
+        pcButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LocalItemsSingleton.getInstance().addItemToType(myItem);
+                Toast.makeText(view.getContext(), myItem.getName() + " " + myItem.getSpecification() + " has been added to pc builder",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        purchaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Item> items = new ArrayList<Item>();
+                items.add(myItem);
+                Intent intent =new Intent(ItemDetailActivity.this, CheckOutActivity.class);
+                Bundle args = new Bundle();
+                args.putSerializable("items",items);
+                intent.putExtra("Bundle",args);
+                startActivity(intent);
+            }
         });
     }
 }

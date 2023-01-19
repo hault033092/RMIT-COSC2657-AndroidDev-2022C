@@ -78,7 +78,37 @@ public class Item implements Serializable {
         this.amount = amount;
     }
 
-
+    public int getTypeIndex()
+    {
+        if(type == "Mainboard")
+        {
+            return 0;
+        }
+        else if(type == "CPU")
+        {
+            return 1;
+        }
+        else if(type == "RAM")
+        {
+            return 2;
+        }
+        else if(type == "Storage Drive")
+        {
+            return 3;
+        }
+        else if(type == "Power Supply")
+        {
+            return 4;
+        }
+        else if(type == "VGA")
+        {
+            return 5;
+        }
+        else
+        {
+            return 6;
+        }
+    }
     //getters
     public int getImage() {
         return image;

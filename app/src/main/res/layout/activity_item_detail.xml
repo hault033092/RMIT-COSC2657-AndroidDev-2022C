@@ -202,7 +202,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            app:srcCompat="@drawable/asset_microbit" />
+                            android:adjustViewBounds="true"
+                            app:srcCompat="@drawable/ram" />
                     </FrameLayout>
 
                 </LinearLayout>
@@ -290,7 +291,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/collectionButton"
+                android:id="@+id/pcButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"

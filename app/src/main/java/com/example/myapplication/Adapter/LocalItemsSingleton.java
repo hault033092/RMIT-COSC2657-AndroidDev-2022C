@@ -2,6 +2,7 @@ package com.example.myapplication.Adapter;
 
 import android.util.Log;
 
+import com.example.myapplication.Entity.ComponentType;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.Interface.ILocalCartChange;
 import com.example.myapplication.R;
@@ -14,7 +15,6 @@ public class LocalItemsSingleton {
     ILocalCartChange localCartChange;
 
     static ArrayList<Item> cart = new ArrayList<>();
-
     //cart section
     public ArrayList<Item> getCart()
     {
@@ -53,6 +53,25 @@ public class LocalItemsSingleton {
         localCartChange.notifyInsert(cart.size());
     }
 
+    ComponentType[] types = {
+            new ComponentType("Mainboard","Connect components(Select 1)"),
+            new ComponentType("CPU","Cental Processing Unit (Select 1)"),
+            new ComponentType("RAM","Random Access Unit (Select up to 4)"),
+            new ComponentType("Storage Drive","Data Storage Device (Select up to 2)"),
+            new ComponentType("Power Supply", "Convert Electric Current for Computer (Select 1)"),
+            new ComponentType("VGA","Graphic Processing Unit(Select 1)"),
+            new ComponentType("Monitor","Display Device (Select up to 3)")
+    };
+
+    public ComponentType[] getTypes(){
+        return types;
+    }
+    public void addItemToType(Item item)
+    {
+        //detect the index of the type
+        int index = item.getTypeIndex();
+        types[index].addComponent(item);
+    }
     //GENERATE SINGLETON
     public static LocalItemsSingleton getInstance()
     {
