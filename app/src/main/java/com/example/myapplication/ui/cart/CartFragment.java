@@ -155,6 +155,7 @@ public class CartFragment extends Fragment {
         FrameLayout layout = v.findViewById(R.id.no_Item);
         Log.d("check view","has this ever been called---------------------------");
         if(state) {
+            Log.d("check view","hide the empty cart---------------------------");
             layout.setVisibility(View.VISIBLE);
         }
         else {
