@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.pcbuilder;
+package com.example.myapplication.pcbuilder;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,14 +1,13 @@
-package com.example.myapplication.ui.pcbuilder;
+package com.example.myapplication.pcbuilder;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,10 +20,8 @@ import com.example.myapplication.Entity.ComponentType;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.Interface.IPCItemChange;
 import com.example.myapplication.Interface.IPCTypeChange;
+import com.example.myapplication.ItemListActivity;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.cart.Cart_RecycleViewAdapter;
-
-import java.util.ArrayList;
 
 public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderRecycleViewAdapter.MyViewHolder> {
 
@@ -85,7 +82,10 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
         holder.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Open Item list with tag
+                Intent i = new Intent(context, ItemListActivity.class);
+                i.putExtra("passTAG",type.getTypeName());
+                context.startActivity(i);
             }
         });
         //update color to icon color to blue on even position
