@@ -6,7 +6,7 @@
     <string name="title_pcbuilder">PC Builder</string>
     <string name="title_buyback">Buyback</string>
     <string name="inventory">Inventory</string>
-    <string name="buyback_manual">How to use: Enter your component model into the search bar and the system will validate if your item is eligible in our system or not.</string>
+    <string name="buyback_manual">Instruction: Enter your component model into the search and add it into the buyback bag.</string>
     <string name="buyback_welcome">Trade your components here and receive amazing discounts</string>
     <string name="sub_header">Search for your desired PC components here!</string>
     <string name="title_activity_check_out">CheckOutActivity</string>

@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="363dp"
+        android:layout_height="465dp"
         android:orientation="vertical">
 
         <TextView
@@ -36,26 +36,40 @@
             android:textAlignment="center"
             android:textSize="15sp" />
 
-        <android.widget.SearchView
-            android:id="@+id/buybackSearchBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="@drawable/rounded_rectangle"
-            android:baselineAligned="true"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search for components. . ." />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <android.widget.SearchView
+                android:id="@+id/buybackSearchBar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_rectangle"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search for components. . .">
+
+                <requestFocus />
+            </android.widget.SearchView>
+
+            <ListView
+                android:id="@+id/demolist"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/buybackSearchBar" />
+        </RelativeLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="249dp" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="249dp" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 
 </LinearLayout>

@@ -23,6 +23,9 @@ public class PcComponent implements Serializable {
         this.price = price;
     }
 
+    public PcComponent(String s) {
+    }
+
     public long getId() {
         return id;
     }
