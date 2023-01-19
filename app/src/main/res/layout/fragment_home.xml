@@ -51,13 +51,13 @@
             android:layout_marginTop="10dp"
             android:layout_weight="0"
             android:adjustViewBounds="true"
-            android:src="@drawable/pc_banner"/>
+            android:src="@drawable/pc_banner" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cateView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="0"
             android:orientation="horizontal"
             android:overScrollMode="never" />
@@ -65,7 +65,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -89,18 +89,14 @@
                 android:textSize="16sp" />
         </LinearLayout>
 
-        <GridView
-            android:id="@+id/itemsGrid"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommentList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:horizontalSpacing="10dp"
-            android:nestedScrollingEnabled="false"
-            android:numColumns="2"
+            android:layout_weight="0"
             android:overScrollMode="never"
-            android:scrollbars="none"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="10dp" />
+            android:scrollbars="none" />
 
         <TextView
             android:id="@+id/textView8"

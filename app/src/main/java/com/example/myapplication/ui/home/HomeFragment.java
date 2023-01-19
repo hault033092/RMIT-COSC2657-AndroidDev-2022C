@@ -1,8 +1,10 @@
 package com.example.myapplication.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,9 +16,11 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.myapplication.Adapter.HomeCateAdapter;
+import com.example.myapplication.Adapter.HomeRecommendAdapter;
 import com.example.myapplication.Adapter.SearchAdapter;
 import com.example.myapplication.Entity.Category;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.ItemListActivity;
 import com.example.myapplication.Model.ItemsDatabase;
 import com.example.myapplication.R;
 
@@ -41,22 +45,37 @@ public class HomeFragment extends Fragment {
         //recycle view
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.cateView);
 
-        //Adapter
-        HomeCateAdapter homeAdapter = new HomeCateAdapter(view.getContext(),cates);
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.HORIZONTAL,false));
-        recyclerView.setAdapter(homeAdapter);
-
         ArrayList<Item> subList = new ArrayList<>() ;
         for(int i =0;i<4;i++)
         {
             subList.add(itemsList.get(i));
         }
+        //Adapter
+        HomeCateAdapter homeAdapter = new HomeCateAdapter(view.getContext(),cates);
+        HomeRecommendAdapter recommendAdapter = new HomeRecommendAdapter(view.getContext(),subList);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.HORIZONTAL,false));
+        recyclerView.setAdapter(homeAdapter);
+
         //Grid use 4 slots
-        GridView gridView = view.findViewById(R.id.itemsGrid);
-        SearchAdapter searchAdapter = new SearchAdapter(subList, getContext());
-        gridView.setAdapter(searchAdapter);
+        RecyclerView recommentView = view.findViewById(R.id.recommentList);
+        recommentView.setHasFixedSize(true);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(view.getContext(), 2);
+
+        recommentView.setLayoutManager(mLayoutManager);
+        recommentView.setAdapter(recommendAdapter);
+
+        //Add Show ALL BUTTON
+        TextView showAll = view.findViewById(R.id.show_all);
+        showAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(), ItemListActivity.class);
+                i.putExtra("passTAG","All");
+                getContext().startActivity(i);
+            }
+        });
 
 
         return view;
