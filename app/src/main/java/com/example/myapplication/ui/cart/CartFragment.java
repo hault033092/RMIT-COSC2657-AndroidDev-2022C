@@ -15,16 +15,40 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.myapplication.Adapter.LocalItemsSingleton;
 import com.example.myapplication.CheckOutActivity;
 import com.example.myapplication.Entity.Item;
+import com.example.myapplication.Interface.ILocalCartChange;
 import com.example.myapplication.R;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
-public class CartFragment extends Fragment {
-    ArrayList<Item> itemList = new ArrayList<>();
+public class CartFragment extends Fragment implements ILocalCartChange {
+
+    Cart_RecycleViewAdapter adapter;
+
+    @Override
+    public void notifyInsert(int size) {
+        if(adapter == null) return;//no action can be taken
+        adapter.notifyItemInserted(size-1);
+    }
+
+    //enable calling from singleton
+    @Override
+    public void notifyItemChange(int pos, int size) {
+        if(adapter == null) return;//no action can be taken
+        adapter.notifyItemRemoved(pos);
+        adapter.notifyItemRangeChanged(pos,size);
+    }
+
+    @Override
+    public void notifyClear() {
+        if(adapter == null ) return;//should not be called
+        adapter.notifyDataSetChanged();
+        DisplayEmptyCart(true);
+    }
 
     //define callback interface
     interface ICartCallBack{
@@ -36,33 +60,31 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        //generate data
-        GenerateTestingData();
-
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        int itemSize =LocalItemsSingleton.getInstance().getCartSize();
         //item count
-        String itemCount = itemList.size() + " items";
+        String itemCount = itemSize + " items";
         TextView itemCountView = view.findViewById(R.id.subHeader);
         itemCountView.setText(itemCount);
 
         //recycle view
         RecyclerView recyclerView = view.findViewById(R.id.cartView);
-        Cart_RecycleViewAdapter adapter = new Cart_RecycleViewAdapter(view.getContext(), itemList);
+        adapter = new Cart_RecycleViewAdapter(view.getContext(), LocalItemsSingleton.getInstance().getCart());
 
-        recyclerView.setHasFixedSize(false);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false));
         recyclerView.setAdapter(adapter);
 
-        if(itemList.size() == 0)
+        if(itemSize  == 0)
         {
             DisplayEmptyCart(true);
         }
 
         //calculation
         float subtotalCost = 0;
-        for (int i = 0; i < itemList.size(); i++) {
-            subtotalCost += itemList.get(i).getQuantityPrice();
+        for (int i = 0; i < itemSize; i++) {
+            subtotalCost += LocalItemsSingleton.getInstance().getItem(i).getQuantityPrice();
         }
         float taxes = subtotalCost * 5 / 100;
         float totalCost = subtotalCost + taxes;
@@ -83,8 +105,8 @@ public class CartFragment extends Fragment {
             @Override
             public void onCartChange() {
                 float subtotalCost = 0;
-                for (int i = 0; i < itemList.size(); i++) {
-                    subtotalCost += itemList.get(i).getQuantityPrice();
+                for (int i = 0; i < LocalItemsSingleton.getInstance().getCartSize(); i++) {
+                    subtotalCost += LocalItemsSingleton.getInstance().getItem(i).getQuantityPrice();
                 }
                 float taxes = subtotalCost * 5 / 100;
                 float totalCost = subtotalCost + taxes;
@@ -96,13 +118,11 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onCartDelete(Item cart,int position) {
-                adapter.notifyItemRemoved(position);
-                adapter.notifyItemRangeChanged(position,itemList.size());
-                itemList.remove(position);
+                LocalItemsSingleton.getInstance().removeItem(position);
                 //delete need to update price
                 float subtotalCost = 0;
-                for (int i = 0; i < itemList.size(); i++) {
-                    subtotalCost += itemList.get(i).getQuantityPrice();
+                for (int i = 0; i < LocalItemsSingleton.getInstance().getCartSize(); i++) {
+                    subtotalCost += LocalItemsSingleton.getInstance().getItem(i).getQuantityPrice();
                 }
                 float taxes = subtotalCost * 5 / 100;
                 float totalCost = subtotalCost + taxes;
@@ -111,7 +131,7 @@ public class CartFragment extends Fragment {
                 tax.setText(fmt.format(taxes));
                 total.setText(fmt.format(totalCost));
                 //display empty cart if there are no item
-                if(itemList.size() ==0)
+                if(LocalItemsSingleton.getInstance().getCartSize() ==0)
                 {
                     DisplayEmptyCart(true);
                 }
@@ -121,22 +141,20 @@ public class CartFragment extends Fragment {
         //Set Clear ALL
         TextView clear = view.findViewById(R.id.clear);
         clear.setOnClickListener(view1 -> {
-            itemList.clear();
-            adapter.notifyDataSetChanged();
-            DisplayEmptyCart(true);
+            LocalItemsSingleton.getInstance().clear();
 
-            subtotal.setText("$0");
-            tax.setText("$0");
-            total.setText("$0");
+            subtotal.setText("$0.00");
+            tax.setText("$0.00");
+            total.setText("$0.00");
         });
 
         //Set CHECKOUT
         Button checkOut = view.findViewById(R.id.checkOut);
         checkOut.setOnClickListener(view12 -> {
-            if(itemList.size() == 0) return;//reject if there are nothing in cart
+            if(LocalItemsSingleton.getInstance().getCartSize()== 0) return;//reject if there are nothing in cart
             Intent intent =new Intent(getActivity(), CheckOutActivity.class);
             Bundle args = new Bundle();
-            args.putSerializable("items",itemList);
+            args.putSerializable("items",LocalItemsSingleton.getInstance().getCart());
             intent.putExtra("Bundle",args);
             startActivity(intent);
         });
@@ -163,15 +181,5 @@ public class CartFragment extends Fragment {
         }
     }
 
-    private void GenerateTestingData() {
-        Item item = new Item(R.drawable.asset_microbit, "Microbit", "V1", 15.00f,1);
-        Item item2 = new Item(R.drawable.asset_microbit, "Ram DDR", "4GB",10.00f, 2);
-        Item item3 = new Item(R.drawable.asset_microbit, "Monitor RT", "Model 1572", 55.00f, 1);
-        Item item4 = new Item(R.drawable.asset_microbit, "Razor Gaming mouse", "V2", 105.00f, 3);
-        itemList.add(item);
-        itemList.add(item2);
-        itemList.add(item3);
-        itemList.add(item4);
-    }
 
 }

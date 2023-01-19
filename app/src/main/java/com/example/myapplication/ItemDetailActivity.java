@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myapplication.Adapter.LocalItemsSingleton;
 import com.example.myapplication.Entity.Item;
 
 import java.util.ArrayList;
@@ -82,18 +84,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
 
         cartButton.setOnClickListener(view -> {
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            RecyclerView recyclerView = new RecyclerView(context);
-//            Cart_RecycleViewAdapter adapter = new Cart_RecycleViewAdapter(context, itemsList);
-//
-//
-//            Bundle bundle = new Bundle();
-//            recyclerView.setArguments(bundle);
-//            fragmentTransaction.add(R.id.cartView, cartFragment).commit();
-//
-//            bundle.putInt("itemImage", myItem.getImage());
 
+            LocalItemsSingleton.getInstance().addCart(myItem);
+            Toast.makeText(view.getContext(), myItem.getName() + " has been added to cart",Toast.LENGTH_SHORT).show();
         });
     }
 }

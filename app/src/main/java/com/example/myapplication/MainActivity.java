@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.myapplication.Adapter.LocalItemsSingleton;
 import com.example.myapplication.ui.buyback.BuybackFragment;
 import com.example.myapplication.ui.cart.CartFragment;
 import com.example.myapplication.ui.home.HomeFragment;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Inject method to local storage
+        LocalItemsSingleton.getInstance().setLocalCartChange(cartFragment);
 
         bottomNavigationView  = findViewById(R.id.bottom_navigation);
 
