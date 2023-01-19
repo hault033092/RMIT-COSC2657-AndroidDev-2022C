@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".ContactUsActivity"
+    android:orientation="vertical"
     android:gravity="center"
+    tools:context=".ContactUsActivity"
     android:paddingHorizontal="20dp"
     android:background="#F7F7F7">
 
@@ -58,7 +58,6 @@
             android:padding="10dp"
             android:inputType="textLongMessage"
             android:hint="@string/body_prompt"
-            android:minLines="5"
             android:autofillHints="" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -71,6 +70,17 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="30dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/returnButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/d_Green"
+            android:text="@string/return_button"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
 </LinearLayout>

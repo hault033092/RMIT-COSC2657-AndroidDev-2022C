@@ -6,13 +6,21 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 public class ContactUsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
 
@@ -20,6 +28,7 @@ public class ContactUsActivity extends AppCompatActivity {
         EditText subject = findViewById(R.id.subject);
         EditText message = findViewById(R.id.messageBody);
         AppCompatButton sendButton = findViewById(R.id.sendButton);
+        AppCompatButton returnButton = findViewById(R.id.returnButton);
 
         sendButton.setOnClickListener(view -> {
             String destinationEmail = "minhlongjoe@gmail.com";
@@ -53,5 +62,7 @@ public class ContactUsActivity extends AppCompatActivity {
              }
             }
         });
+
+        returnButton.setOnClickListener(view -> finish());
     }
 }

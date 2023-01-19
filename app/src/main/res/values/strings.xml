@@ -117,5 +117,10 @@
     <string name="email_prompt">Your email address</string>
     <string name="subject_prompt">Your subject</string>
     <string name="body_prompt">Message body</string>
+    <string name="return_button">return</string>
+    <string name="decoration">decoration</string>
+    <string name="back_button">back_button</string>
+    <string name="cart_icon">cart_icon</string>
+    <string name="item_image">item_image</string>
 
 </resources>
