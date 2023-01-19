@@ -2,25 +2,37 @@ package com.example.myapplication.database;
 
 public class Coupon {
     private long id;
-    private String code;
-    private double amount;
+    private String name;
+    private String description;
+    private String expiryDate;
+    private int fixedDiscount;
 
     public Coupon(){}
-    public Coupon(long id, String code, double amount) {
+    public Coupon(long id, String name, String description, String expiryDate, int fixedDiscount) {
         this.id = id;
-        this.code = code;
-        this.amount = amount;
-    }
-
-    public double getAmount() {
-        return amount;
+        this.name = name;
+        this.description = description;
+        this.expiryDate = expiryDate;
+        this.fixedDiscount = fixedDiscount;
     }
 
     public long getId() {
         return id;
     }
 
-    public String getCode() {
-        return code;
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getFixedDiscount() {
+        return fixedDiscount;
+    }
+
+    public String getExpiryDate() {
+        return expiryDate;
     }
 }
