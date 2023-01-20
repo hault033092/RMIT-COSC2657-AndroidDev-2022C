@@ -161,15 +161,18 @@ public class CheckOutActivity extends AppCompatActivity {
                     smsManager.sendTextMessage(phone, null, smsMessage, null, null);
                     Toast.makeText(CheckOutActivity.this, "SMS confirmation sent", Toast.LENGTH_SHORT).show();
                     Log.e("SMS from PC Hub ", " " + phone + smsMessage);
+
+                    //empty cart on success
+                    LocalItemsSingleton.getInstance().clear();
+
                 } catch (Exception e) {
                     Toast.makeText(CheckOutActivity.this,
                             "Failed to send SMS confirmation", Toast.LENGTH_SHORT).show();
                 }
+
+                Intent i = new Intent(CheckOutActivity.this, MainActivity.class);
+                startActivity(i);
             }
-
-
-            //empty cart on success
-            //LocalItemsSingleton.getInstance().clear();
         });
 
     }
