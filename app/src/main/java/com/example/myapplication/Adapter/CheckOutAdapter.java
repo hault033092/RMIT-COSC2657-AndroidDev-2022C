@@ -42,8 +42,10 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.MyView
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
 
         Item item = items.get(position);
+
         holder.imageView.setImageResource(item.getImage());
         holder.nameText.setText(item.getName());
+        holder.specText.setText(item.getSpecification());
         holder.priceText.setText(fmt.format(item.getPrice()));
         holder.amountText.setText("x"+String.valueOf(item.getAmount()));
     }
@@ -56,6 +58,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.MyView
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView nameText;
+        TextView specText;
         TextView priceText;
         TextView amountText;
 
@@ -65,6 +68,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.MyView
 
             imageView = itemView.findViewById(R.id.item_image);
             nameText = itemView.findViewById(R.id.name_text);
+            specText = itemView.findViewById(R.id.spec_text);
             priceText = itemView.findViewById(R.id.cost_text);
             amountText = itemView.findViewById(R.id.quantity);
 

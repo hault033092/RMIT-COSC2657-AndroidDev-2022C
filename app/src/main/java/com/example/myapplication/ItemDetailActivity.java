@@ -91,25 +91,19 @@ public class ItemDetailActivity extends AppCompatActivity {
             Toast.makeText(view.getContext(), myItem.getName() + " " + myItem.getSpecification() + " has been added to cart",Toast.LENGTH_SHORT).show();
         });
 
-        pcButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LocalItemsSingleton.getInstance().addItemToType(myItem);
-                Toast.makeText(view.getContext(), myItem.getName() + " " + myItem.getSpecification() + " has been added to pc builder",Toast.LENGTH_SHORT).show();
-            }
+        pcButton.setOnClickListener(view -> {
+            LocalItemsSingleton.getInstance().addItemToType(myItem);
+            Toast.makeText(view.getContext(), myItem.getName() + " " + myItem.getSpecification() + " has been added to pc builder",Toast.LENGTH_SHORT).show();
         });
 
-        purchaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ArrayList<Item> items = new ArrayList<Item>();
-                items.add(myItem);
-                Intent intent =new Intent(ItemDetailActivity.this, CheckOutActivity.class);
-                Bundle args = new Bundle();
-                args.putSerializable("items",items);
-                intent.putExtra("Bundle",args);
-                startActivity(intent);
-            }
+        purchaseButton.setOnClickListener(view -> {
+            ArrayList<Item> items = new ArrayList<Item>();
+            items.add(myItem);
+            Intent intent =new Intent(ItemDetailActivity.this, CheckOutActivity.class);
+            Bundle args = new Bundle();
+            args.putSerializable("items",items);
+            intent.putExtra("Bundle",args);
+            startActivity(intent);
         });
     }
 }

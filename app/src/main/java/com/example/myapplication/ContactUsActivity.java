@@ -58,7 +58,7 @@ public class ContactUsActivity extends AppCompatActivity {
              try {
                  startActivity(Intent.createChooser(intent, "Sent email..."));
              } catch (Exception e) {
-                 Toast.makeText(ContactUsActivity.this, "Exception caught: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                 Toast.makeText(ContactUsActivity.this, "Failed to send request: " + e.getMessage(), Toast.LENGTH_SHORT).show();
              }
             }
         });

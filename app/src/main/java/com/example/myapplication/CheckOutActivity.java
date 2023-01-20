@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -65,12 +66,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
         //set RETURN BUTTON
         FrameLayout returnButton = findViewById(R.id.ReturnButton);
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        returnButton.setOnClickListener(view -> finish());
         //set RECYCLE VIEW
         ArrayList<Item> itemList = new ArrayList<>();
         Intent intent = getIntent();
@@ -139,32 +135,41 @@ public class CheckOutActivity extends AppCompatActivity {
 
         //set PURCHASE
         Button checkOut = findViewById(R.id.checkOut);
-        checkOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //check condition for purchasing
-                TextView location = findViewById(R.id.locationView);
-                String address = location.getText().toString();
+        checkOut.setOnClickListener(view -> {
+            //check condition for purchasing
+            TextView location = findViewById(R.id.locationView);
+            String address = location.getText().toString();
 
-                EditText edit = findViewById(R.id.phoneView);
-                String phone = edit.getText().toString();
+            EditText edit = findViewById(R.id.phoneView);
+            String phone = edit.getText().toString();
 
-                String time = timeView.getText().toString();
+            String time = timeView.getText().toString();
 
-                if(address.compareTo(DEFAULT_TEXT) == 0) {
-                    Toast.makeText(CheckOutActivity.this,"Address has not been added",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(phone.compareTo(DEFAULT_TEXT2) == 0) {
-                    Toast.makeText(CheckOutActivity.this,"Phone has not been added",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                //--------------------------------------------------------------------------------
-                //write your code here
-
-                //empty cart on success
-                //LocalItemsSingleton.getInstance().clear();
+            if(address.compareTo(DEFAULT_TEXT) == 0) {
+                Toast.makeText(CheckOutActivity.this,"Address has not been added",Toast.LENGTH_SHORT).show();
+                return;
             }
+            if(phone.compareTo(DEFAULT_TEXT2) == 0) {
+                Toast.makeText(CheckOutActivity.this,"Phone has not been added",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            else {
+                String smsMessage = "Hello PC Hub customer, your order has been confirmed";
+                try {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phone, null, smsMessage, null, null);
+                    Toast.makeText(CheckOutActivity.this, "SMS confirmation sent", Toast.LENGTH_SHORT).show();
+                    Log.e("SMS from PC Hub ", " " + phone + smsMessage);
+                } catch (Exception e) {
+                    Toast.makeText(CheckOutActivity.this,
+                            "Failed to send SMS confirmation", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+
+            //empty cart on success
+            //LocalItemsSingleton.getInstance().clear();
         });
 
     }
