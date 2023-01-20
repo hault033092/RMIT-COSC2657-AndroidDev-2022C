@@ -22,14 +22,6 @@ public class DatabaseManager {
     public DatabaseManager open() throws SQLException {
         dbHelper = new DatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
-        Log.d("null check","if database is null_-------------------------------");
-        if(database == null)
-        {
-            Log.d("null check","it is null_-------------------------------");
-        }
-        else{
-            Log.d("null check","database is not null_-------------------------------");
-        }
         return this;
     }
     public void close(){
