@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
+import android.text.Html;
 
 import java.util.ArrayList;
 
@@ -23,17 +24,20 @@ public class DatabaseManager {
     public void close(){
         dbHelper.close();
     }
-    public void insert(String name, String specification, String description,  double price){
+    public void insert(String name, String image, String specification, String description, int score, double price){
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.COMPONENT_NAME, name);
+        contentValue.put(DatabaseHelper.COMPONENT_IMAGE, image);
         contentValue.put(DatabaseHelper.COMPONENT_SPECIFICATION, specification);
         contentValue.put(DatabaseHelper.COMPONENT_DESCRIPTION, description);
+        contentValue.put(DatabaseHelper.COMPONENT_SCORE, score);
         contentValue.put(DatabaseHelper.COMPONENT_PRICE, price);
         database.insert(DatabaseHelper.TABLE_COMPONENT, null, contentValue);
     }
-    public int update(long _id, String name, String specification, String description, String type, int score, double price){
+    public int update(long _id, String name, String image, String specification, String description, String type, int score, double price){
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.COMPONENT_NAME, name);
+        contentValue.put(DatabaseHelper.COMPONENT_IMAGE, image);
         contentValue.put(DatabaseHelper.COMPONENT_SPECIFICATION, specification);
         contentValue.put(DatabaseHelper.COMPONENT_DESCRIPTION, description);
         contentValue.put(DatabaseHelper.COMPONENT_TYPE, type);
@@ -69,11 +73,11 @@ public class DatabaseManager {
     }
 
     public PcComponent getOne(long id) {
-        Cursor cursor = database.query(DatabaseHelper.TABLE_COMPONENT, new String[]{DatabaseHelper.COMPONENT_ID, DatabaseHelper.COMPONENT_NAME, DatabaseHelper.COMPONENT_SPECIFICATION, DatabaseHelper.COMPONENT_DESCRIPTION, DatabaseHelper.COMPONENT_TYPE, DatabaseHelper.COMPONENT_SCORE, DatabaseHelper.COMPONENT_PRICE}, DatabaseHelper.COMPONENT_ID + " =?", new String[]{String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = database.query(DatabaseHelper.TABLE_COMPONENT, new String[]{DatabaseHelper.COMPONENT_ID, DatabaseHelper.COMPONENT_NAME, DatabaseHelper.COMPONENT_IMAGE, DatabaseHelper.COMPONENT_SPECIFICATION, DatabaseHelper.COMPONENT_DESCRIPTION, DatabaseHelper.COMPONENT_TYPE, DatabaseHelper.COMPONENT_SCORE, DatabaseHelper.COMPONENT_PRICE}, DatabaseHelper.COMPONENT_ID + " =?", new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), Integer.parseInt(cursor.getString(5)), Double.parseDouble(cursor.getString(6)) );
+        PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), Integer.parseInt(cursor.getString(6)), Double.parseDouble(cursor.getString(7)) );
 
         return component;
     }
@@ -84,7 +88,7 @@ public class DatabaseManager {
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), Integer.parseInt(cursor.getString(5)), Double.parseDouble(cursor.getString(6)) );
+                PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)),cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), Integer.parseInt(cursor.getString(6)), Double.parseDouble(cursor.getString(7)) );
                 components.add(component);
             } while (cursor.moveToNext());
         }

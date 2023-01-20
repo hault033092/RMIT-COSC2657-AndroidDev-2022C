@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class PcComponent implements Serializable {
     private long id;
+    private String image;
     private String name;
     private String specification;
     private String description;
@@ -13,9 +14,10 @@ public class PcComponent implements Serializable {
 
     public PcComponent() {}
 
-    public PcComponent(long id, String name, String specification, String description, String type, int score, double price) {
+    public PcComponent(long id, String name, String image, String specification, String description, String type, int score, double price) {
         this.id = id;
         this.name = name;
+        this.image = image;
         this.specification = specification;
         this.description = description;
         this.type = type;
@@ -44,5 +46,17 @@ public class PcComponent implements Serializable {
     
     public String getName() {
         return name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public String getType() {
+        return type;
     }
 }

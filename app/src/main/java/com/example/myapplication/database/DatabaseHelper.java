@@ -11,6 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_COMPONENT = "Component";
     public static final String COMPONENT_ID = "_id";
     public static final String COMPONENT_NAME = "name";
+    public static final String COMPONENT_IMAGE = "image";
     public static final String COMPONENT_SPECIFICATION = "specification";
     public static final String COMPONENT_DESCRIPTION = "description";
     public static final String COMPONENT_TYPE = "type";
@@ -20,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "create table " + TABLE_COMPONENT + " (" +
                     COMPONENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     COMPONENT_NAME + " TEXT NOT NULL," +
+                    COMPONENT_IMAGE + " TEXT NOT NULL" +
                     COMPONENT_SPECIFICATION + " TEXT NOT NULL," +
                     COMPONENT_DESCRIPTION + " TEXT NOT NULL," +
                     COMPONENT_TYPE + " TEXT NOT NULL," +
