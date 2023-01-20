@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.myapplication.AboutUsActivity;
 import com.example.myapplication.Adapter.HomeCateAdapter;
 import com.example.myapplication.Adapter.HomeRecommendAdapter;
 import com.example.myapplication.ContactUsActivity;
