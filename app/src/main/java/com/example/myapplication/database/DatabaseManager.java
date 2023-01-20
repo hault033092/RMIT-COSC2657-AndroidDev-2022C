@@ -113,7 +113,7 @@ public class DatabaseManager {
     }
 
     public void populateData() {
-        if (exists(DatabaseHelper.TABLE_COMPONENT)) {
+        if (!exists(DatabaseHelper.TABLE_COMPONENT)) {
             PcComponent[] components = {
                     new PcComponent(1,"RAM Asus", R.drawable.ram_asus, "4Gb", "","RAM", 4, 50),
                     new PcComponent(1,"RAM ROG", R.drawable.ram_rog, "4Gb", "","RAM", 4, 48),
@@ -140,7 +140,7 @@ public class DatabaseManager {
                     new PcComponent(5, "SamSung", R.drawable.storage_drive_ssd, "250Gb", "Fast responding", "Storage drive", 4, 51.09),
                     new PcComponent(6, "Sea Sonic", R.drawable.adapter, "1000W", "", "Adpater", 4, 329.99),
                     new PcComponent(6, "Aigo AK", R.drawable.adapter_2, "600W", "", "Adpater", 4, 699.99),
-                    new PcComponent(6, "Front Tech Ps", R.drawable.adapter_3, "1000W", "", "Adpater", 4, 143.8)
+                    new PcComponent(6, "Front Tech Ps", R.drawable.adapter_3, "1000W", "", "Adpater", 4, 142.8)
             };
 
             for (PcComponent pc : components) {
