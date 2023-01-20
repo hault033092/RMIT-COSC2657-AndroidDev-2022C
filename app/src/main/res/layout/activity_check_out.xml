@@ -58,7 +58,8 @@
                     android:textAlignment="center"
                     android:textColor="#CC000000"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
 
             </FrameLayout>
 
@@ -124,7 +125,7 @@
                             android:layout_height="wrap_content"
                             android:text="Delivery Address"
                             android:textColor="#99000000"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <Space
@@ -148,7 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Not yet selected"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -193,7 +194,7 @@
                             android:layout_height="wrap_content"
                             android:text="Phone Number"
                             android:textColor="#99000000"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <Space
@@ -257,7 +258,7 @@
                             android:layout_height="wrap_content"
                             android:text="Estimated Time"
                             android:textColor="#99000000"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <Space
@@ -272,7 +273,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="17th, Jan, 2023"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -317,7 +318,7 @@
                             android:layout_height="wrap_content"
                             android:text="Voucher"
                             android:textColor="#99000000"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <Space
@@ -342,7 +343,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Not yet selected"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -385,7 +386,7 @@
                     android:layout_weight="1"
                     android:text="Subtotal"
                     android:textColor="#99000000"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -418,7 +419,7 @@
                     android:layout_weight="1"
                     android:text="Tax"
                     android:textColor="#99000000"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -450,7 +451,7 @@
                     android:layout_weight="1"
                     android:text="Promo"
                     android:textColor="@color/d_Green"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Space
