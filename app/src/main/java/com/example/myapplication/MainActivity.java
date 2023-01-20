@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
@@ -106,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        //testing
+        Intent i = new Intent(this,TestActivity.class);
+        startActivity(i);
 
     }
 }
