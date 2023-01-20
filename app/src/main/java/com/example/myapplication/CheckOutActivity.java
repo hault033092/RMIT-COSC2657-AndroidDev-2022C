@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.CheckOutAdapter;
+import com.example.myapplication.Adapter.LocalItemsSingleton;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.Entity.Voucher;
 import com.example.myapplication.Interface.IConfirmLocation;
@@ -50,6 +51,7 @@ public class CheckOutActivity extends AppCompatActivity {
     float voucher = 0;
 
     private final String DEFAULTTEXT = "Not yet selected";
+    private final String DEFAULTTEXT2 = "";
 
     private final static int LOCATION_REQUEST_CODE = 23;
     private  final static int VOUCHER_REQUEST_CODE = 20;
@@ -153,7 +155,7 @@ public class CheckOutActivity extends AppCompatActivity {
                     Toast.makeText(CheckOutActivity.this,"Address has not been added",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(phone.compareTo(DEFAULTTEXT) == 0) {
+                if(phone.compareTo(DEFAULTTEXT2) == 0) {
                     Toast.makeText(CheckOutActivity.this,"Phone has not been added",Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -161,7 +163,7 @@ public class CheckOutActivity extends AppCompatActivity {
                 //write your code here
 
                 //empty cart on success
-
+                //LocalItemsSingleton.getInstance().clear();
             }
         });
 
