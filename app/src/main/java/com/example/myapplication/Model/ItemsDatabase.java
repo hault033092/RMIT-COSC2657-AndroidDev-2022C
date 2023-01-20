@@ -74,13 +74,13 @@ public class ItemsDatabase {
 
     }
 
-    public static List<Item> retrieveAllSearchItems()
+    public static List<Item> retrieveAllSearchItems( Context context)
     {
         ArrayList<PcComponent> components = dbManager.getAll();
         ArrayList<Item> items = new ArrayList<>();
         for(int i  =0;i<components.size();i++)
         {
-            items.add(new Item(components.get(i)));
+            items.add(new Item(components.get(i),context));
         }
         return items;
     }

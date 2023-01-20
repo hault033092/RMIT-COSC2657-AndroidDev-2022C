@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         ItemsDatabase.createItemDatabase(this);
         LocalItemsSingleton.getInstance().setLocalCartChange(cartFragment);
         //Inject database to view that require using
-        homeFragment.injectDatabase();
-        searchFragment.injectDatabase();
+        homeFragment.injectDatabase(this);
+        searchFragment.injectDatabase(this);
         bottomNavigationView  = findViewById(R.id.bottom_navigation);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();

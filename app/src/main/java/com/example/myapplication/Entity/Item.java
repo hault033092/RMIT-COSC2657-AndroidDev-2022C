@@ -1,4 +1,6 @@
 package com.example.myapplication.Entity;
+import android.content.Context;
+import android.util.Log;
 
 import com.example.myapplication.R;
 import com.example.myapplication.database.PcComponent;
@@ -19,9 +21,10 @@ public class Item implements Serializable {
         return type;
     }
 
-    public Item(PcComponent comp)
+    public Item(PcComponent comp,Context context)
     {
-        this.image = 0;
+
+        //this.image = context.getResources().getIdentifier(comp.getImage(), "drawable", context.getPackageName());
         this.name =comp.getName();
         this.specification= comp.getSpecification();
         this.description = comp.getDescription();

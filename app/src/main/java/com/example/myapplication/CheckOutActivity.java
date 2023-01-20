@@ -147,6 +147,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
                     //empty cart on success
                     LocalItemsSingleton.getInstance().clear();
+                    finish();
 
                 } catch (Exception e) {
                     Toast.makeText(CheckOutActivity.this,

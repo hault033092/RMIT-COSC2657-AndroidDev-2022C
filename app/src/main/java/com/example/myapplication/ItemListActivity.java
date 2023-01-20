@@ -21,13 +21,13 @@ import java.util.Objects;
 
 public class ItemListActivity extends AppCompatActivity {
 
-    List<Item> itemsList = ItemsDatabase.retrieveAllSearchItems();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        List<Item> itemsList = ItemsDatabase.retrieveAllSearchItems(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
