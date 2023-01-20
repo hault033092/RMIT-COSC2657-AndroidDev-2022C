@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -100,6 +101,10 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        //testing
+        Intent i = new Intent(this,TestActivity.class);
+        startActivity(i);
 
     }
 }
