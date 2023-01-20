@@ -19,7 +19,7 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        dbManager = new DatabaseManager(this);
+        dbManager = new DatabaseManager(TestActivity.this);
 
         ArrayList<PcComponent> components = dbManager.getAll();
 
