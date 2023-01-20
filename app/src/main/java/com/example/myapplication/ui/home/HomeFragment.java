@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
             new Category(R.drawable.vga_icon,"VGA"),
             new Category(R.drawable.storagedrive_icon,"Storage Drive")
     };
-    List<Item> itemsList = ItemsDatabase.retrieveAllSearchItems();
+    List<Item> itemsList ;
     Context context;
 
     @Override
@@ -97,5 +97,9 @@ public class HomeFragment extends Fragment {
 
 
         return view;
+    }
+    public void injectDatabase()
+    {
+        itemsList  = ItemsDatabase.retrieveAllSearchItems();
     }
 }

@@ -21,12 +21,8 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-<<<<<<< Updated upstream
-        dbManager = new DatabaseManager(TestActivity.this);
-=======
-        Log.d("check null","when this is called--------------------------");
         dbManager = ItemsDatabase.getInstance().getDbManager();
->>>>>>> Stashed changes
+
 
         ArrayList<PcComponent> components = dbManager.getAll();
 

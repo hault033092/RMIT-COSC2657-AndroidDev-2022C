@@ -77,7 +77,12 @@ public class ItemsDatabase {
     public static List<Item> retrieveAllSearchItems()
     {
         ArrayList<PcComponent> components = dbManager.getAll();
-        return null;
+        ArrayList<Item> items = new ArrayList<>();
+        for(int i  =0;i<components.size();i++)
+        {
+            items.add(new Item(components.get(i)));
+        }
+        return items;
     }
     //for testing purpose
     public static List<Item> retrieveAllSearchItems2() {

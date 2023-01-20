@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.myapplication.Adapter.SearchAdapter;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.Model.ItemsDatabase;
+import com.example.myapplication.database.PcComponent;
 
 import java.util.List;
 import java.util.Objects;

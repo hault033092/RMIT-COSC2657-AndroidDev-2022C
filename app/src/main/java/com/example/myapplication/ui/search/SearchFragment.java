@@ -20,7 +20,7 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
     Context context;
-    List<Item> itemsList = ItemsDatabase.retrieveAllSearchItems();
+    List<Item> itemsList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,5 +50,9 @@ public class SearchFragment extends Fragment {
         });
 
         return view;
+    }
+    public void injectDatabase()
+    {
+        itemsList  = ItemsDatabase.retrieveAllSearchItems();
     }
 }
