@@ -25,7 +25,6 @@ public class Item implements Serializable {
     {
 
         this.image = context.getResources().getIdentifier(comp.getImage(), "drawable", context.getPackageName());
-        Log.d("image is:", String.valueOf(this.image));
         this.name =comp.getName();
         this.specification= comp.getSpecification();
         this.description = comp.getDescription();
