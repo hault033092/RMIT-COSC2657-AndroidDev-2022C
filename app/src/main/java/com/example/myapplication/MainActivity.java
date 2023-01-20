@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     BuybackFragment buybackFragment = new BuybackFragment();
     PcBuilderFragment pcBuilderFragment = new PcBuilderFragment();
 
-    DatabaseManager dbManager;
+    private DatabaseManager dbManager;
 
 
     @Override
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         for (PcComponent pc : components) {
-            dbManager.insert(pc.getName(), pc.getImage(), pc.getSpecification(), pc.getDescription(),pc.getScore(), pc.getPrice());
+            dbManager.insert(pc.getName(), pc.getImage(), pc.getSpecification(), pc.getDescription(), pc.getType(),pc.getScore(), pc.getPrice());
         }
 
         //Inject method to local storage
