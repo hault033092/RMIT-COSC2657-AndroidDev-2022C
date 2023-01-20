@@ -24,12 +24,13 @@ public class DatabaseManager {
     public void close(){
         dbHelper.close();
     }
-    public void insert(String name, String image, String specification, String description, int score, double price){
+    public void insert(String name, String image, String specification, String description, String type, int score, double price){
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.COMPONENT_NAME, name);
         contentValue.put(DatabaseHelper.COMPONENT_IMAGE, image);
         contentValue.put(DatabaseHelper.COMPONENT_SPECIFICATION, specification);
         contentValue.put(DatabaseHelper.COMPONENT_DESCRIPTION, description);
+        contentValue.put(DatabaseHelper.COMPONENT_TYPE, type);
         contentValue.put(DatabaseHelper.COMPONENT_SCORE, score);
         contentValue.put(DatabaseHelper.COMPONENT_PRICE, price);
         database.insert(DatabaseHelper.TABLE_COMPONENT, null, contentValue);

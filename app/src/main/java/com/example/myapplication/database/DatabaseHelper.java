@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "create table " + TABLE_COMPONENT + " (" +
                     COMPONENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     COMPONENT_NAME + " TEXT NOT NULL," +
-                    COMPONENT_IMAGE + " TEXT NOT NULL" +
+                    COMPONENT_IMAGE + " TEXT NOT NULL," +
                     COMPONENT_SPECIFICATION + " TEXT NOT NULL," +
                     COMPONENT_DESCRIPTION + " TEXT NOT NULL," +
                     COMPONENT_TYPE + " TEXT NOT NULL," +
