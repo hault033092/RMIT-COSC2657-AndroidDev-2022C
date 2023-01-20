@@ -9,6 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 
+import com.example.myapplication.Model.ItemsDatabase;
 import com.example.myapplication.database.DatabaseManager;
 import com.example.myapplication.database.PcComponent;
 
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     BuybackFragment buybackFragment = new BuybackFragment();
     PcBuilderFragment pcBuilderFragment = new PcBuilderFragment();
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< Updated upstream
         DatabaseManager dbManager = new DatabaseManager(this);
         dbManager.open();
 
@@ -73,8 +79,11 @@ public class MainActivity extends AppCompatActivity {
         for (PcComponent pc : components) {
             dbManager.insert(pc.getName(), pc.getImage(), pc.getSpecification(), pc.getDescription(), pc.getType(),pc.getScore(), pc.getPrice());
         }
+=======
+>>>>>>> Stashed changes
 
         //Inject method to local storage
+        ItemsDatabase.createItemDatabase(this);
         LocalItemsSingleton.getInstance().setLocalCartChange(cartFragment);
 
         bottomNavigationView  = findViewById(R.id.bottom_navigation);

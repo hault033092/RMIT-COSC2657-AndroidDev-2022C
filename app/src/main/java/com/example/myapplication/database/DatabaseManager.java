@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.ContactsContract;
 import android.text.Html;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,14 @@ public class DatabaseManager {
     public DatabaseManager open() throws SQLException {
         dbHelper = new DatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
+        Log.d("null check","if database is null_-------------------------------");
+        if(database == null)
+        {
+            Log.d("null check","it is null_-------------------------------");
+        }
+        else{
+            Log.d("null check","database is not null_-------------------------------");
+        }
         return this;
     }
     public void close(){
@@ -86,6 +95,10 @@ public class DatabaseManager {
     public ArrayList<PcComponent> getAll() {
         ArrayList<PcComponent> components = new ArrayList<>();
         String query = "SELECT * from " + DatabaseHelper.TABLE_COMPONENT;
+        if(database == null)
+        {
+            Log.d("null check","now data base is null-------------------------------");
+        }
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {

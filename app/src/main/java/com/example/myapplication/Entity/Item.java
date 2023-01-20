@@ -1,5 +1,8 @@
 package com.example.myapplication.Entity;
 
+import com.example.myapplication.R;
+import com.example.myapplication.database.PcComponent;
+
 import java.io.Serializable;
 
 public class Item implements Serializable {
@@ -16,6 +19,16 @@ public class Item implements Serializable {
         return type;
     }
 
+    public Item(PcComponent comp)
+    {
+        this.image = 0;
+        this.name =comp.getName();
+        this.specification= comp.getSpecification();
+        this.description = comp.getDescription();
+        this.type = comp.getType();
+        this.score= comp.getScore();
+        this.price = (float)comp.getPrice();
+    }
     // Constructor for ItemDetail Activity
     public Item(int image, String name, String specification, String description, float price, int amount) {
         this.image = image;
