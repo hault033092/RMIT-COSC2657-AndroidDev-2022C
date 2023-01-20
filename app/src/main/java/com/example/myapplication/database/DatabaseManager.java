@@ -126,7 +126,7 @@ public class DatabaseManager {
                     new PcComponent(1,"RAM Asus", R.drawable.ram_asus, "32Gb", "","RAM", 4, 80),
                     new PcComponent(2, "Asus Prime Mainboard", R.drawable.mainboard_icon, "Socket AMD AM4", "Low core effience", "Mainboard", 4, 100),
                     new PcComponent(2, "Asus ROG Mainboard", R.drawable.mainboard_icon, "Z690", "Low core effience", "Mainboard", 4, 25),
-                    new PcComponent(2, "Asus ROG Mainboard", R.drawable.mainboard_icon, "STRIX B560", "Gaming Wifi", "Mainbord", 4, 100),
+                    new PcComponent(2, "Asus ROG Mainboard", R.drawable.mainboard_icon, "STRIX B560", "Gaming Wifi", "Mainboard", 4, 100),
                     new PcComponent(3, "Intel CPU", R.drawable.intel_i3, "i3", "For Light Weigth Use", "CPU", 4, 100),
                     new PcComponent(3, "Intel CPU", R.drawable.intel_i5, "i5", "For Light Weigth Use and Slight Gaming", "CPU", 4, 120),
                     new PcComponent(3, "Intel CPU", R.drawable.intel_i7, "i7", "For Better Performance, Gaming", "CPU", 4, 214),
