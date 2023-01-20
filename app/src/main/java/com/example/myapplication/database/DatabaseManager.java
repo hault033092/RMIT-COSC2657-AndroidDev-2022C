@@ -8,6 +8,8 @@ import android.provider.ContactsContract;
 import android.text.Html;
 import android.util.Log;
 
+import com.example.myapplication.R;
+
 import java.util.ArrayList;
 
 public class DatabaseManager {
@@ -33,7 +35,7 @@ public class DatabaseManager {
     public void close(){
         dbHelper.close();
     }
-    public void insert(String name, String image, String specification, String description, String type, int score, double price){
+    public void insert(String name, int image, String specification, String description, String type, int score, double price){
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.COMPONENT_NAME, name);
         contentValue.put(DatabaseHelper.COMPONENT_IMAGE, image);
@@ -44,7 +46,7 @@ public class DatabaseManager {
         contentValue.put(DatabaseHelper.COMPONENT_PRICE, price);
         database.insert(DatabaseHelper.TABLE_COMPONENT, null, contentValue);
     }
-    public int update(long _id, String name, String image, String specification, String description, String type, int score, double price){
+    public int update(long _id, String name, int image, String specification, String description, String type, int score, double price){
         ContentValues contentValue = new ContentValues();
         contentValue.put(DatabaseHelper.COMPONENT_NAME, name);
         contentValue.put(DatabaseHelper.COMPONENT_IMAGE, image);
@@ -87,7 +89,7 @@ public class DatabaseManager {
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), Integer.parseInt(cursor.getString(6)), Double.parseDouble(cursor.getString(7)) );
+        PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)), cursor.getString(1), Integer.parseInt(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5), Integer.parseInt(cursor.getString(6)), Double.parseDouble(cursor.getString(7)) );
 
         return component;
     }
@@ -102,7 +104,7 @@ public class DatabaseManager {
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)),cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), Integer.parseInt(cursor.getString(6)), Double.parseDouble(cursor.getString(7)) );
+                PcComponent component = new PcComponent((long) Double.parseDouble(cursor.getString(0)),cursor.getString(1), Integer.parseInt(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5), Integer.parseInt(cursor.getString(6)), Double.parseDouble(cursor.getString(7)) );
                 components.add(component);
             } while (cursor.moveToNext());
         }
@@ -121,32 +123,32 @@ public class DatabaseManager {
     public void populateData() {
         if (exists(DatabaseHelper.TABLE_COMPONENT)) {
             PcComponent[] components = {
-                    new PcComponent(1,"RAM Asus", "ram_asus.png", "4Gb", "","RAM", 4, 50),
-                    new PcComponent(1,"RAM ROG", "ram_rog.png", "4Gb", "","RAM", 4, 48),
-                    new PcComponent(1,"RAM STR", "ram_icon.png", "4Gb", "","RAM", 4, 62),
-                    new PcComponent(1,"RAM RGB", "ram_asus.png", "4Gb", "","RAM", 4, 61),
-                    new PcComponent(1,"RAM ROG", "ram_rog.png", "8Gb", "","RAM", 4, 55),
-                    new PcComponent(1,"RAM Asus", "ram_asus.png", "8Gb", "","RAM", 4, 57),
-                    new PcComponent(1,"RAM ROG", "ram_rog.png", "16Gb", "","RAM", 4, 70),
-                    new PcComponent(1,"RAM RGB", "ram_asus.png", "16Gb", "","RAM", 4, 68),
-                    new PcComponent(1,"RAM Asus", "ram_asus.png", "32Gb", "","RAM", 4, 80),
-                    new PcComponent(2, "Asus Prime", "mainboard_icon.png", "Socket AMD AM4", "Low core effience", "Main Board", 4, 100),
-                    new PcComponent(2, "Asus ROG", "mainboard_icon.png", "Z690", "Low core effience", "Main Board", 4, 25),
-                    new PcComponent(2, "Asus ROG", "mainboard_icon.png", "STRIX B560", "Gaming Wifi", "Main Bord", 4, 100),
-                    new PcComponent(3, "Intel", "intel_i3.png", "i3", "For Light Weigth Use", "CPU", 4, 100),
-                    new PcComponent(3, "Intel", "intel_i5.png", "i5", "For Light Weigth Use and Slight Gaming", "CPU", 4, 120),
-                    new PcComponent(3, "Intel", "intel_i7.png", "i7", "For Better Performance, Gaming", "CPU", 4, 214),
-                    new PcComponent(3, "Intel", "intel_i9.png", "i9", "For Heavy Duty Uses", "CPU", 4, 530),
-                    new PcComponent(4, "NVDIA", "graphic_card.png", "GeoForce RTX3060 rev 2.0 12Gb", "Max Gaming config", "Graphic Card", 4, 429.44),
-                    new PcComponent(4, "NVDIA", "graphic_card.png", "GeoForce GTX1650 Super Twin Fan", "Max Gaming config", "Graphic Card", 4, 182.94),
-                    new PcComponent(4, "NVDIA", "graphic_card.png", "Quardo RTX8000 48Gb", "Max Gaming config", "Graphic Card", 4, 8899),
-                    new PcComponent(5, "SamSung", "storage_drive_ssd.png", "1Tb", "Fast responding", "Storage drive", 4, 89.33),
-                    new PcComponent(5, "SamSung", "storage_drive_ssd.png", "1Tb", "Fast responding", "Storage drive", 4, 51.44),
-                    new PcComponent(5, "SamSung", "storage_drive_ssd.png", "2Tb", "Fast responding", "Storage drive", 4, 341.15),
-                    new PcComponent(5, "SamSung", "storage_drive_ssd.png", "250Gb", "Fast responding", "Storage drive", 4, 51.09),
-                    new PcComponent(6, "Sea Sonic", "adapter.png", "1000W", "", "Adpater", 4, 329.99),
-                    new PcComponent(6, "Aigo AK", "adapter_2.png", "600W", "", "Adpater", 4, 699.99),
-                    new PcComponent(6, "Front Tech Ps", "adapter_3.png", "1000W", "", "Adpater", 4, 143.8)
+                    new PcComponent(1,"RAM Asus", R.drawable.ram_asus, "4Gb", "","RAM", 4, 50),
+                    new PcComponent(1,"RAM ROG", R.drawable.ram_rog, "4Gb", "","RAM", 4, 48),
+                    new PcComponent(1,"RAM STR", R.drawable.ram_icon, "4Gb", "","RAM", 4, 62),
+                    new PcComponent(1,"RAM RGB", R.drawable.ram_asus, "4Gb", "","RAM", 4, 61),
+                    new PcComponent(1,"RAM ROG", R.drawable.ram_rog, "8Gb", "","RAM", 4, 55),
+                    new PcComponent(1,"RAM Asus", R.drawable.ram_asus, "8Gb", "","RAM", 4, 57),
+                    new PcComponent(1,"RAM ROG", R.drawable.ram_rog, "16Gb", "","RAM", 4, 70),
+                    new PcComponent(1,"RAM RGB", R.drawable.ram_asus, "16Gb", "","RAM", 4, 68),
+                    new PcComponent(1,"RAM Asus", R.drawable.ram_asus, "32Gb", "","RAM", 4, 80),
+                    new PcComponent(2, "Asus Prime", R.drawable.mainboard_icon, "Socket AMD AM4", "Low core effience", "Main Board", 4, 100),
+                    new PcComponent(2, "Asus ROG", R.drawable.mainboard_icon, "Z690", "Low core effience", "Main Board", 4, 25),
+                    new PcComponent(2, "Asus ROG", R.drawable.mainboard_icon, "STRIX B560", "Gaming Wifi", "Main Bord", 4, 100),
+                    new PcComponent(3, "Intel", R.drawable.intel_i3, "i3", "For Light Weigth Use", "CPU", 4, 100),
+                    new PcComponent(3, "Intel", R.drawable.intel_i5, "i5", "For Light Weigth Use and Slight Gaming", "CPU", 4, 120),
+                    new PcComponent(3, "Intel", R.drawable.intel_i7, "i7", "For Better Performance, Gaming", "CPU", 4, 214),
+                    new PcComponent(3, "Intel", R.drawable.intel_i9, "i9", "For Heavy Duty Uses", "CPU", 4, 530),
+                    new PcComponent(4, "NVDIA", R.drawable.graphic_card, "GeoForce RTX3060 rev 2.0 12Gb", "Max Gaming config", "Graphic Card", 4, 429.44),
+                    new PcComponent(4, "NVDIA", R.drawable.graphic_card, "GeoForce GTX1650 Super Twin Fan", "Max Gaming config", "Graphic Card", 4, 182.94),
+                    new PcComponent(4, "NVDIA", R.drawable.graphic_card, "Quardo RTX8000 48Gb", "Max Gaming config", "Graphic Card", 4, 8899),
+                    new PcComponent(5, "SamSung", R.drawable.storage_drive_ssd, "1Tb", "Fast responding", "Storage drive", 4, 89.33),
+                    new PcComponent(5, "SamSung", R.drawable.storage_drive_ssd, "1Tb", "Fast responding", "Storage drive", 4, 51.44),
+                    new PcComponent(5, "SamSung", R.drawable.storage_drive_ssd, "2Tb", "Fast responding", "Storage drive", 4, 341.15),
+                    new PcComponent(5, "SamSung", R.drawable.storage_drive_ssd, "250Gb", "Fast responding", "Storage drive", 4, 51.09),
+                    new PcComponent(6, "Sea Sonic", R.drawable.adapter, "1000W", "", "Adpater", 4, 329.99),
+                    new PcComponent(6, "Aigo AK", R.drawable.adapter_2, "600W", "", "Adpater", 4, 699.99),
+                    new PcComponent(6, "Front Tech Ps", R.drawable.adapter_3, "1000W", "", "Adpater", 4, 143.8)
             };
 
             for (PcComponent pc : components) {
