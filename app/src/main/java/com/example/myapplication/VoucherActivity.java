@@ -42,9 +42,9 @@ public class VoucherActivity extends AppCompatActivity implements IApplyVoucher 
     private  void GenerateData()
     {
 
-        Voucher v1 = new Voucher("Khoa Special 10","discount purchasement by 10%", 10, "18/02/2023");
-        Voucher v2 = new Voucher("Khoa Special 20","discount purchasement by 5%", 5, "21/03/2023");
-        Voucher v3 = new Voucher("Khoa Special 30","discount purchasement by 20%", 30, "20/02/2023");
+        Voucher v1 = new Voucher("Khoa Special 10","discount on purchase by 10%", 10, "18/02/2023");
+        Voucher v2 = new Voucher("Khoa Special 20","discount on purchase by 5%", 5, "21/03/2023");
+        Voucher v3 = new Voucher("Khoa Special 30","discount on purchase by 30%", 30, "20/02/2023");
     vouchers.add(v1);
     vouchers.add(v2);
     vouchers.add(v3);

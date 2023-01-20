@@ -113,7 +113,7 @@ public class DatabaseManager {
     }
 
     public void populateData() {
-        if (!exists(DatabaseHelper.TABLE_COMPONENT)) {
+        if (exists(DatabaseHelper.TABLE_COMPONENT)) {
             PcComponent[] components = {
                     new PcComponent(1,"RAM Asus", R.drawable.ram_asus, "4Gb", "","RAM", 4, 50),
                     new PcComponent(1,"RAM ROG", R.drawable.ram_rog, "4Gb", "","RAM", 4, 48),
