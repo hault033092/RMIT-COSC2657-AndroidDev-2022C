@@ -49,14 +49,10 @@ public class HomeFragment extends Fragment {
         context = container.getContext();
 
         // Contact & About Buttons
-        AppCompatButton aboutUs = view.findViewById(R.id.aboutUs);
+
         AppCompatButton contactUs = view.findViewById(R.id.contactUs);
 
         // Onclick events for buttons
-        aboutUs.setOnClickListener(view1 -> {
-            Intent i = new Intent(context, AboutUsActivity.class);
-            context.startActivity(i);
-        });
 
         contactUs.setOnClickListener(view1 -> {
             Intent i = new Intent(context, ContactUsActivity.class);
@@ -98,8 +94,8 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-    public void injectDatabase()
+    public void injectDatabase(Context c)
     {
-        itemsList  = ItemsDatabase.retrieveAllSearchItems();
+        itemsList  = ItemsDatabase.retrieveAllSearchItems(c);
     }
 }

@@ -51,8 +51,8 @@ public class SearchFragment extends Fragment {
 
         return view;
     }
-    public void injectDatabase()
+    public void injectDatabase(Context c)
     {
-        itemsList  = ItemsDatabase.retrieveAllSearchItems();
+        itemsList  = ItemsDatabase.retrieveAllSearchItems(c);
     }
 }

@@ -98,27 +98,32 @@
             android:overScrollMode="never"
             android:scrollbars="none" />
 
+        <TextView
+            android:id="@+id/about_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0"
+            android:text="About Us"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0"
+            android:text="Pc builder is an application designed to help users build customised computers, buying components and rating the computer." />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginVertical="10dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/aboutUs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_rectangle"
-                android:text="@string/about_us"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:paddingHorizontal="20dp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"/>
+            android:layout_marginVertical="10dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/contactUs"
@@ -126,11 +131,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:background="@drawable/rounded_rectangle"
+                android:backgroundTint="@color/d_Green"
+                android:paddingHorizontal="20dp"
                 android:text="@string/contact_us"
-                android:textColor="#000000"
+                android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:paddingHorizontal="20dp" />
+                android:textStyle="bold" />
         </LinearLayout>
 
 
