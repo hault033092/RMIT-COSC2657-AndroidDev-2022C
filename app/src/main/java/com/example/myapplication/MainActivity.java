@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
                 new PcComponent(3, "Intel", "cpu_icon.png", "i5", "For Light Weigth Use and Slight Gaming", "CPU", 4, 120),
                 new PcComponent(3, "Intel", "cpu_icon.png", "i7", "For Better Performance, Gaming", "CPU", 4, 214),
                 new PcComponent(3, "Intel", "cpu_icon.png", "i9", "For Heavy Duty Uses", "CPU", 4, 530),
-                new PcComponent(4, "NVDIA", "", "GeoForce RTX3060 rev 2.0 12Gb", "Max Gaming config", "Graphic Card", 4, 429.44),
-                new PcComponent(4, "NVDIA", "", "GeoForce GTX1650 Super Twin Fan", "Max Gaming config", "Graphic Card", 4, 182.94),
-                new PcComponent(4, "NVDIA", "", "Quardo RTX8000 48Gb", "Max Gaming config", "Graphic Card", 4, 8899),
+                new PcComponent(4, "NVDIA", "storgedrive_icon.png", "GeoForce RTX3060 rev 2.0 12Gb", "Max Gaming config", "Graphic Card", 4, 429.44),
+                new PcComponent(4, "NVDIA", "storagedrive_icon.png", "GeoForce GTX1650 Super Twin Fan", "Max Gaming config", "Graphic Card", 4, 182.94),
+                new PcComponent(4, "NVDIA", "storagedrive_icon.png", "Quardo RTX8000 48Gb", "Max Gaming config", "Graphic Card", 4, 8899),
 
         };
 
