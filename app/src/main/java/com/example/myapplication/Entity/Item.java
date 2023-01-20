@@ -24,7 +24,7 @@ public class Item implements Serializable {
     public Item(PcComponent comp,Context context)
     {
 
-        this.image = context.getResources().getIdentifier(comp.getImage(), "drawable", context.getPackageName());
+        //this.image = context.getResources().getIdentifier(comp.getImage(), "drawable", context.getPackageName());
         this.name =comp.getName();
         this.specification= comp.getSpecification();
         this.description = comp.getDescription();
