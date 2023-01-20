@@ -161,6 +161,70 @@
                 android:background="@color/l_gray" />
 
             <LinearLayout
+                android:id="@+id/Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/ic_baseline_phone_android_24" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Phone Number"
+                            android:textColor="#99000000"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <Space
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/phoneView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="phone"
+                        android:minHeight="48dp"
+                        android:text="Not yet selected"
+                        android:textColor="#66000000"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="76dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/l_gray" />
+
+            <LinearLayout
                 android:id="@+id/EstimatedTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

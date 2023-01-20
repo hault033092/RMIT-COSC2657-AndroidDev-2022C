@@ -16,9 +16,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Adapter.CheckOutAdapter;
 import com.example.myapplication.Entity.Item;
@@ -45,6 +48,8 @@ public class CheckOutActivity extends AppCompatActivity {
     float subtotalCost =0;
     float taxes = 0 ;
     float voucher = 0;
+
+    private final String DEFAULTTEXT = "Not yet selected";
 
     private final static int LOCATION_REQUEST_CODE = 23;
     private  final static int VOUCHER_REQUEST_CODE = 20;
@@ -89,6 +94,8 @@ public class CheckOutActivity extends AppCompatActivity {
 
             }
         });
+        //set Phone
+
         //set TIME
         Calendar c = GregorianCalendar.getInstance();
         c.add(Calendar.DAY_OF_WEEK, 7);
@@ -127,6 +134,36 @@ public class CheckOutActivity extends AppCompatActivity {
         promo.setText("-" + fmt.format(voucher));
 
         total.setText(fmt.format(totalCost));
+
+        //set PURCHASE
+        Button checkOut = findViewById(R.id.checkOut);
+        checkOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //check condition for purchasing
+                TextView location = findViewById(R.id.locationView);
+                String address = location.getText().toString();
+
+                EditText edit = findViewById(R.id.phoneView);
+                String phone = edit.getText().toString();
+
+                String time = timeView.getText().toString();
+
+                if(address.compareTo(DEFAULTTEXT) == 0) {
+                    Toast.makeText(CheckOutActivity.this,"Address has not been added",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(phone.compareTo(DEFAULTTEXT) == 0) {
+                    Toast.makeText(CheckOutActivity.this,"Phone has not been added",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                //--------------------------------------------------------------------------------
+                //write your code here
+
+                //empty cart on success
+
+            }
+        });
 
     }
 
