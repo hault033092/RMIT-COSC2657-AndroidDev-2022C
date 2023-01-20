@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -97,7 +96,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
 
         purchaseButton.setOnClickListener(view -> {
-            ArrayList<Item> items = new ArrayList<Item>();
+            ArrayList<Item> items = new ArrayList<>();
             items.add(myItem);
             Intent intent =new Intent(ItemDetailActivity.this, CheckOutActivity.class);
             Bundle args = new Bundle();

@@ -34,7 +34,7 @@ public class PcBuilderFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_pcbuilder,container,false);
         ComponentType[] types =LocalItemsSingleton.getInstance().getTypes();
         //recycle view
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.typeList);
+        RecyclerView recyclerView = view.findViewById(R.id.typeList);
         TextView subtotalView = view.findViewById(R.id.total);
 
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
@@ -47,9 +47,8 @@ public class PcBuilderFragment extends Fragment {
 
         //compute subtotal
         subtotal = 0;
-        for(int i=0;i<types.length;i++)
-        {
-            subtotal += types[i].getCheckPrice();
+        for (ComponentType type : types) {
+            subtotal += type.getCheckPrice();
         }
         subtotalView.setText(fmt.format(subtotal));
 
@@ -91,30 +90,25 @@ public class PcBuilderFragment extends Fragment {
         });
         //set CHECKOUT
         Button checkOut = view.findViewById(R.id.checkOut);
-        checkOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ArrayList<Item> savedItems = new ArrayList<>();
-                //get the list of selected
-                for(int i=0;i< types.length;i++)
-                {
-                    ArrayList<Item> items = types[i].getItems();
-                    for(int j=0;j<items.size();j++)
-                    {
-                        if(!types[i].getChecked(j)) continue;
-                        //this item is checked please add this one to the check out list
-                        savedItems.add(items.get(j));
-                    }
+        checkOut.setOnClickListener(view1 -> {
+            ArrayList<Item> savedItems = new ArrayList<>();
+            //get the list of selected
+            for (ComponentType type : types) {
+                ArrayList<Item> items = type.getItems();
+                for (int j = 0; j < items.size(); j++) {
+                    if (!type.getChecked(j)) continue;
+                    //this item is checked please add this one to the check out list
+                    savedItems.add(items.get(j));
                 }
-                //Reject if there are no item to add
-                if(savedItems.size() == 0) return;
-
-                Intent intent =new Intent(getActivity(), CheckOutActivity.class);
-                Bundle args = new Bundle();
-                args.putSerializable("items",savedItems);
-                intent.putExtra("Bundle",args);
-                startActivity(intent);
             }
+            //Reject if there are no item to add
+            if(savedItems.size() == 0) return;
+
+            Intent intent =new Intent(getActivity(), CheckOutActivity.class);
+            Bundle args = new Bundle();
+            args.putSerializable("items",savedItems);
+            intent.putExtra("Bundle",args);
+            startActivity(intent);
         });
         return view;
     }

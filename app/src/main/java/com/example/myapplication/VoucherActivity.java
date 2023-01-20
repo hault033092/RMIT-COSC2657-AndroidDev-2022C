@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -16,9 +14,7 @@ import com.example.myapplication.Adapter.VoucherAdapter;
 import com.example.myapplication.Entity.Voucher;
 import com.example.myapplication.Interface.IApplyVoucher;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 public class VoucherActivity extends AppCompatActivity implements IApplyVoucher {
@@ -35,16 +31,11 @@ public class VoucherActivity extends AppCompatActivity implements IApplyVoucher 
 
         //return button
         FrameLayout returnBut = findViewById(R.id.ReturnButton);
-        returnBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        returnBut.setOnClickListener(view -> finish());
 
         GridView grid = findViewById(R.id.grid);
         VoucherAdapter adapter = new VoucherAdapter(this,vouchers);
-        adapter.setApplyVoucher(this::ApplyVoucher);
+        adapter.setApplyVoucher(this);
         grid.setAdapter(adapter);
     }
 

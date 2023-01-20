@@ -1,8 +1,10 @@
 package com.example.myapplication.ui.cart;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,8 +24,6 @@ import com.example.myapplication.Interface.ILocalCartChange;
 import com.example.myapplication.R;
 
 import java.text.NumberFormat;
-import java.util.ArrayList;
-
 
 public class CartFragment extends Fragment implements ILocalCartChange {
 
@@ -43,6 +43,7 @@ public class CartFragment extends Fragment implements ILocalCartChange {
         adapter.notifyItemRangeChanged(pos,size);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void notifyClear() {
         if(adapter == null ) return;//should not be called
@@ -56,8 +57,9 @@ public class CartFragment extends Fragment implements ILocalCartChange {
         void onCartDelete(Item cart,int position);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
@@ -167,14 +169,10 @@ public class CartFragment extends Fragment implements ILocalCartChange {
         return view;
     }
 
-//    public void AddItemToCart()
-//    {
-//
-//    }
-
     private void DisplayEmptyCart(boolean state) {
          View v = getView();
-         if(v == null) return;//some how happens
+         if(v == null) return; //some how happens
+
         FrameLayout layout = v.findViewById(R.id.no_Item);
         Log.d("check view","has this ever been called---------------------------");
         if(state) {

@@ -2,15 +2,11 @@ package com.example.myapplication;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -20,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,11 +23,6 @@ import com.example.myapplication.Adapter.CheckOutAdapter;
 import com.example.myapplication.Adapter.LocalItemsSingleton;
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.Entity.Voucher;
-import com.example.myapplication.Interface.IConfirmLocation;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -45,8 +35,6 @@ import java.util.Objects;
 
 public class CheckOutActivity extends AppCompatActivity {
 
-    private GoogleMap mMap;
-
     float subtotalCost =0;
     float taxes = 0 ;
     float voucher = 0;
@@ -56,6 +44,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
     private final static int LOCATION_REQUEST_CODE = 23;
     private  final static int VOUCHER_REQUEST_CODE = 20;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -76,7 +65,7 @@ public class CheckOutActivity extends AppCompatActivity {
             itemList = (ArrayList<Item>) args.getSerializable("items");
 
             //set adapter
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.cartView);
+            RecyclerView recyclerView = findViewById(R.id.cartView);
             CheckOutAdapter adapter = new CheckOutAdapter(this,itemList);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
@@ -84,13 +73,10 @@ public class CheckOutActivity extends AppCompatActivity {
         }
         //set LOCATION CHANGE
         TextView addressChange = findViewById(R.id.addressChangeButton);
-        addressChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CheckOutActivity.this,MapsActivity.class);
-                startActivityForResult(intent,LOCATION_REQUEST_CODE);
+        addressChange.setOnClickListener(view -> {
+            Intent intent1 = new Intent(CheckOutActivity.this,MapsActivity.class);
+            startActivityForResult(intent1,LOCATION_REQUEST_CODE);
 
-            }
         });
         //set Phone
 
@@ -105,12 +91,9 @@ public class CheckOutActivity extends AppCompatActivity {
 
         //set VOUCHER
         TextView voucherChange = findViewById(R.id.voucherChange);
-        voucherChange.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CheckOutActivity.this,VoucherActivity.class);
-                startActivityForResult(intent,VOUCHER_REQUEST_CODE);
-            }
+        voucherChange.setOnClickListener(view -> {
+            Intent intent12 = new Intent(CheckOutActivity.this,VoucherActivity.class);
+            startActivityForResult(intent12,VOUCHER_REQUEST_CODE);
         });
         //set COST
         subtotalCost = 0;
@@ -136,6 +119,7 @@ public class CheckOutActivity extends AppCompatActivity {
         //set PURCHASE
         Button checkOut = findViewById(R.id.checkOut);
         checkOut.setOnClickListener(view -> {
+
             //check condition for purchasing
             TextView location = findViewById(R.id.locationView);
             String address = location.getText().toString();
@@ -143,7 +127,7 @@ public class CheckOutActivity extends AppCompatActivity {
             EditText edit = findViewById(R.id.phoneView);
             String phone = edit.getText().toString();
 
-            String time = timeView.getText().toString();
+//            String time = timeView.getText().toString();
 
             if(address.compareTo(DEFAULT_TEXT) == 0) {
                 Toast.makeText(CheckOutActivity.this,"Address has not been added",Toast.LENGTH_SHORT).show();
@@ -151,7 +135,6 @@ public class CheckOutActivity extends AppCompatActivity {
             }
             if(phone.compareTo(DEFAULT_TEXT2) == 0) {
                 Toast.makeText(CheckOutActivity.this,"Phone has not been added",Toast.LENGTH_SHORT).show();
-                return;
             }
 
             else {
@@ -177,6 +160,7 @@ public class CheckOutActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

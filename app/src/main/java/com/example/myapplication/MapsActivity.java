@@ -2,10 +2,10 @@ package com.example.myapplication;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -20,14 +20,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.myapplication.Interface.IConfirmLocation;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,7 +33,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.myapplication.databinding.ActivityMapsBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -83,15 +78,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
 
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(@NonNull Location location) {
+        locationListener = location -> {
 
-            }
         };
         if(isGPSEnable()) {
             getCurrentLocation();
@@ -110,19 +102,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,16));
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(latLng);
+        mMap.setOnMapClickListener(latLng -> {
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(latLng);
 
-                markerOptions.title(getAddress(latLng));
-                mMap.clear();
-                CameraUpdate location = CameraUpdateFactory.newLatLngZoom(
-                        latLng, 15);
-                mMap.animateCamera(location);
-                mMap.addMarker(markerOptions);
-            }
+            markerOptions.title(getAddress(latLng));
+            mMap.clear();
+            CameraUpdate location1 = CameraUpdateFactory.newLatLngZoom(
+                    latLng, 15);
+            mMap.animateCamera(location1);
+            mMap.addMarker(markerOptions);
         });
     }
 
@@ -144,6 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
         mMap.clear();
+
 //        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
 //            @Override
 //            public void onSuccess(Location location) {
@@ -173,7 +163,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String country = addresses.get(0).getCountryName();
             String postalCode = addresses.get(0).getPostalCode();
             String knownName = addresses.get(0).getFeatureName();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            @SuppressLint("CommitTransaction") FragmentTransaction ft = getFragmentManager().beginTransaction();
             Fragment prev = getFragmentManager().findFragmentByTag("dialog");
             if (prev != null) {
 

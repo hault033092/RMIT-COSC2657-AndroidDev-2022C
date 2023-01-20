@@ -47,6 +47,7 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
     }
 
 
+    @SuppressLint("UseCompatLoadingForColorStateLists")
     @Override
     public void onBindViewHolder(@NonNull PCBuilderRecycleViewAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -79,18 +80,15 @@ public class PCBuilderRecycleViewAdapter extends RecyclerView.Adapter<PCBuilderR
         //assign component
 
         //set click button
-        holder.addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Open Item list with tag
-                Intent i = new Intent(context, ItemListActivity.class);
-                i.putExtra("passTAG",type.getTypeName());
-                context.startActivity(i);
-            }
+        holder.addButton.setOnClickListener(view -> {
+            //Open Item list with tag
+            Intent i = new Intent(context, ItemListActivity.class);
+            i.putExtra("passTAG",type.getTypeName());
+            context.startActivity(i);
         });
         //update color to icon color to blue on even position
         int mod = position %4;
-        int colorIndex = 0;
+        int colorIndex;
         Resources res = context.getResources();
 
         if(mod == 0)

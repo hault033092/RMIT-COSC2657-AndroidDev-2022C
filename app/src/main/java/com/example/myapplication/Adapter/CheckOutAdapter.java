@@ -1,20 +1,18 @@
 package com.example.myapplication.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Entity.Item;
 import com.example.myapplication.R;
-import com.example.myapplication.ui.cart.Cart_RecycleViewAdapter;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -37,6 +35,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.MyView
         return new CheckOutAdapter.MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         NumberFormat fmt = NumberFormat.getCurrencyInstance();
@@ -47,7 +46,7 @@ public class CheckOutAdapter extends RecyclerView.Adapter<CheckOutAdapter.MyView
         holder.nameText.setText(item.getName());
         holder.specText.setText(item.getSpecification());
         holder.priceText.setText(fmt.format(item.getPrice()));
-        holder.amountText.setText("x"+String.valueOf(item.getAmount()));
+        holder.amountText.setText("x" + item.getAmount());
     }
 
     @Override

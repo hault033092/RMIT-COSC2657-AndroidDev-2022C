@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class BuybackSearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     ListView list;
     BuybackAdapter adapter;
-    SearchView editsearch;
+    SearchView editSearch;
     String[] pcCompList;
     ArrayList<PcComponent> arraylist = new ArrayList<PcComponent>();
 
@@ -36,8 +36,8 @@ public class BuybackSearchActivity extends AppCompatActivity implements SearchVi
 
         list.setAdapter(adapter);
 
-        editsearch = (SearchView) findViewById(R.id.buybackSearchBar);
-        editsearch.setOnQueryTextListener(this);
+        editSearch = (SearchView) findViewById(R.id.buybackSearchBar);
+        editSearch.setOnQueryTextListener(this);
     }
 
     @Override

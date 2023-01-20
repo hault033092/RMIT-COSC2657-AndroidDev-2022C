@@ -1,10 +1,9 @@
 package com.example.myapplication;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import android.view.LayoutInflater;
@@ -15,15 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Interface.IConfirmLocation;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 
 public class ConfirmAddress extends DialogFragment  implements
         android.view.View.OnClickListener {
@@ -76,14 +67,14 @@ public class ConfirmAddress extends DialogFragment  implements
 
     }
     @Override
-    public void onCancel(DialogInterface dialog) {
+    public void onCancel(@NonNull DialogInterface dialog) {
         super.onCancel(dialog);
         getFragmentManager().beginTransaction().remove(mapFragment).commit();
 
     }
 
     @Override
-    public void onDismiss(DialogInterface dialog) {
+    public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
         dismiss();
     }

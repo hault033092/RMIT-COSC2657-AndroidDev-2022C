@@ -90,9 +90,9 @@ public class HomeFragment extends Fragment {
         // Add Show ALL BUTTON
         TextView showAll = view.findViewById(R.id.show_all);
         showAll.setOnClickListener(view1 -> {
-            Intent i = new Intent(getContext(), ItemListActivity.class);
+            Intent i = new Intent(context, ItemListActivity.class);
             i.putExtra("passTAG","All");
-            getContext().startActivity(i);
+            context.startActivity(i);
         });
 
 
